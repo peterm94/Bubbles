@@ -2,10 +2,8 @@ using Microsoft.Xna.Framework;
 
 namespace Bubbles
 {
-    public class Main : Game
+    public class Main : Nez.Core
     {
-        private GraphicsDeviceManager graphics;
-
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Aquamarine);
@@ -15,11 +13,6 @@ namespace Bubbles
         protected override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-        }
-
-        public Main()
-        {
-            graphics = new GraphicsDeviceManager(this);
         }
     }
 }
