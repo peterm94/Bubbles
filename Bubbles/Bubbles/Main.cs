@@ -1,5 +1,6 @@
 using System.IO;
-using Bubbles.Player;
+using Bubbles.Components;
+using Bubbles.Systems;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Nez;
@@ -9,6 +10,10 @@ namespace Bubbles
 {
     public class Main : Core
     {
+        public Main() : base(width: 1920, height: 1080, windowTitle: "Bubbles")
+        {
+        }
+
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Aquamarine);
@@ -18,7 +23,14 @@ namespace Bubbles
         protected override void Initialize()
         {
             base.Initialize();
-
+            
+            // Game-wide defaults.
+            Scene.setDefaultDesignResolution(512, 288, Scene.SceneResolutionPolicy.NoBorderPixelPerfect);
+            
+            // http://prime31.github.io/Nez/documentation/systems/physics-collisions
+            // Choosing a size that is slightly larger than your average player/enemy size usually works best.
+            Physics.spatialHashCellSize = 64;
+            
             Window.AllowUserResizing = true;
 
             var newScene = Scene.createWithDefaultRenderer(Color.Aquamarine);
@@ -28,13 +40,14 @@ namespace Bubbles
             scene = newScene;
         }
 
-        private void LoadScene(Scene newScene)
+        private static void LoadScene(Scene newScene)
         {
             var player = newScene.createEntity("Player");
             var tex = Texture2D.FromStream(graphicsDevice, File.OpenRead("../../Content/textures/player.png"));
             player.addComponent(new Sprite(tex));
-            player.addComponent(new PlayerInput());
-            player.transform.position = new Vector2(200, 200);
+            player.addComponent(new Player());
+            player.transform.position = new Vector2(256, 144);
+            newScene.addEntityProcessor(new PlayerMovement());
         }
     }
 }
