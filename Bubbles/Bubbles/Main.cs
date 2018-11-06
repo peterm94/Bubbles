@@ -26,6 +26,7 @@ namespace Bubbles
             
             // Game-wide defaults.
             Scene.setDefaultDesignResolution(512, 288, Scene.SceneResolutionPolicy.NoBorderPixelPerfect);
+            IsMouseVisible = false;
             
             // http://prime31.github.io/Nez/documentation/systems/physics-collisions
             // Choosing a size that is slightly larger than your average player/enemy size usually works best.
