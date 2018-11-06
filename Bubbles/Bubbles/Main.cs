@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Nez;
 using Nez.Sprites;
+using Direction = Bubbles.Systems.Direction;
 
 namespace Bubbles
 {
@@ -34,6 +35,9 @@ namespace Bubbles
             
             Window.AllowUserResizing = true;
 
+            debugRenderEnabled = true;
+            debugRenderEnabled = true;
+            
             var newScene = Scene.createWithDefaultRenderer(Color.Aquamarine);
 
             LoadScene(newScene);
@@ -56,6 +60,7 @@ namespace Bubbles
             
             newScene.addEntityProcessor(new PlayerMovement());
             newScene.addEntityProcessor(new CursorPosition());
+            newScene.addEntityProcessor(new Direction(new Matcher().all(typeof(Player)), cursor));
         }
     }
 }
