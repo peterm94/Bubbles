@@ -1,19 +1,12 @@
 using Bubbles.Scenes;
-using Microsoft.Xna.Framework;
 using Nez;
 
 namespace Bubbles
 {
-    public class Main : Core
+    public class Main : Nez.Core
     {
         public Main() : base(1920, 1080, windowTitle: "Bubbles")
         {
-        }
-
-        protected override void Draw(GameTime gameTime)
-        {
-            GraphicsDevice.Clear(Color.Aquamarine);
-            base.Draw(gameTime);
         }
 
         protected override void Initialize()
