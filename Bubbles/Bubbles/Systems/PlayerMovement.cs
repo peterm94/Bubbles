@@ -14,7 +14,7 @@ namespace Bubbles.Systems
         }
 
         public override void process(Entity entity)
-        {    
+        {
             var move = Vector2.Zero;
             if (Input.isKeyDown(Keys.A))
             {
