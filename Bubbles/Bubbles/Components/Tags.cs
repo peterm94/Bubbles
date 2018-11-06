@@ -5,7 +5,7 @@ namespace Bubbles.Components
     public class Player : Component
     {
     }
-
+    
     public class Cursor : Component
     {
     }
