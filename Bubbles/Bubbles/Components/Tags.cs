@@ -6,6 +6,10 @@ namespace Bubbles.Components
     {
     }
 
+    public class Cursor : Component
+    {
+    }
+
     public class Enemy : Component
     {
     }

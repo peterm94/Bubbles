@@ -47,7 +47,14 @@ namespace Bubbles
             player.addComponent(new Sprite(tex));
             player.addComponent(new Player());
             player.transform.position = new Vector2(256, 144);
+            
+            var cursor = newScene.createEntity("Cursor");
+            var crosshair = Texture2D.FromStream(graphicsDevice, File.OpenRead("../../Content/textures/crosshair.png"));
+            cursor.addComponent(new Sprite(crosshair));
+            cursor.addComponent(new Cursor());
+            
             newScene.addEntityProcessor(new PlayerMovement());
+            newScene.addEntityProcessor(new CursorPosition());
         }
     }
 }
