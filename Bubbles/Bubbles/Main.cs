@@ -5,7 +5,7 @@ namespace Bubbles
 {
     public class Main : Nez.Core
     {
-        public Main() : base(1920, 1080, windowTitle: "Bubbles")
+        public Main() : base(1920, 1080)
         {
         }
 
