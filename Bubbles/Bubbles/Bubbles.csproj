@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\Motion.cs" />
     <Compile Include="Components\Tags.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Program.cs" />
@@ -51,7 +52,7 @@
     <Compile Include="Scenes\MainScene.cs" />
     <Compile Include="Systems\CursorPosition.cs" />
     <Compile Include="Systems\Direction.cs" />
-    <Compile Include="Systems\PlayerMovement.cs" />
+    <Compile Include="Systems\PlayerInput.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -24,6 +24,8 @@ namespace Bubbles.Scenes
             var tex = Texture2D.FromStream(Core.graphicsDevice, File.OpenRead("../../Content/textures/player.png"));
             player.addComponent(new Sprite(tex));
             player.addComponent(new Player());
+            player.addComponent(new PlayerControlled());
+            player.addComponent(new Motion());
             player.transform.position = new Vector2(256, 144);
 
             var cursor = createEntity("Cursor");
@@ -32,7 +34,7 @@ namespace Bubbles.Scenes
             cursor.addComponent(new Sprite(crosshair));
             cursor.addComponent(new Cursor());
 
-            addEntityProcessor(new PlayerMovement());
+            addEntityProcessor(new PlayerInput());
             addEntityProcessor(new CursorPosition());
             addEntityProcessor(new Direction(new Matcher().all(typeof(Player)), cursor));
         }

@@ -5,11 +5,11 @@ using Nez;
 
 namespace Bubbles.Systems
 {
-    public class PlayerMovement : EntityProcessingSystem
+    public class PlayerInput : EntityProcessingSystem
     {
         private const float speed = 100f;
 
-        public PlayerMovement() : base(new Matcher().all(typeof(Player)))
+        public PlayerInput() : base(new Matcher().all(typeof(PlayerControlled), typeof(Motion)))
         {
         }
 
@@ -35,8 +35,8 @@ namespace Bubbles.Systems
             {
                 move.Y++;
             }
-
-            entity.position += move * speed * Time.deltaTime;
+            
+            entity.getComponent<Motion>().Move(move, speed);
         }
     }
 }
