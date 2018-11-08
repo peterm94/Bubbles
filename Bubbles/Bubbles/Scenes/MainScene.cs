@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.IO;
 using Bubbles.Components;
+using Bubbles.Entities;
 using Bubbles.Systems;
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Nez;
 using Nez.Sprites;
@@ -21,13 +21,7 @@ namespace Bubbles.Scenes
             addRenderer(new ScreenSpaceRenderer(100, SCREEN_SPACE_RENDER_LAYER));
             addRenderer(new RenderLayerExcludeRenderer(0, SCREEN_SPACE_RENDER_LAYER));
 
-            var player = createEntity("Player");
-            var tex = Texture2D.FromStream(Core.graphicsDevice, File.OpenRead("../../Content/textures/player.png"));
-            player.addComponent(new Sprite(tex));
-            player.addComponent(new Player());
-            player.addComponent(new PlayerControlled());
-            player.addComponent(new Motion());
-            player.transform.position = new Vector2(256, 144);
+            addEntity(new PlayerEntity());
 
             for (int i = 0; i < 10; i++)
             {

@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Components\Motion.cs" />
     <Compile Include="Components\Tags.cs" />
+    <Compile Include="Entities\PlayerEntity.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
