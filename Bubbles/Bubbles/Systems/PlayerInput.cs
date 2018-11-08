@@ -1,3 +1,4 @@
+using System;
 using Bubbles.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -15,28 +16,33 @@ namespace Bubbles.Systems
 
         public override void process(Entity entity)
         {
-            var move = Vector2.Zero;
+            var moveDir = Vector2.Zero;
             if (Input.isKeyDown(Keys.A))
             {
-                move.X--;
+                moveDir.X--;
             }
 
             if (Input.isKeyDown(Keys.D))
             {
-                move.X++;
+                moveDir.X++;
             }
 
             if (Input.isKeyDown(Keys.W))
             {
-                move.Y--;
+                moveDir.Y--;
             }
 
             if (Input.isKeyDown(Keys.S))
             {
-                move.Y++;
+                moveDir.Y++;
             }
             
-            entity.getComponent<Motion>().Move(move, speed);
+            if (moveDir != Vector2.Zero)
+            {
+                var motion = entity.getComponent<Motion>();
+                motion.Direction = moveDir;
+                motion.Speed = speed;
+            }
         }
     }
 }

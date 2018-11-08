@@ -36,6 +36,7 @@ namespace Bubbles.Scenes
 
             addEntityProcessor(new PlayerInput());
             addEntityProcessor(new CursorPosition());
+            addEntityProcessor(new MotionSystem());
             addEntityProcessor(new Direction(new Matcher().all(typeof(Player)), cursor));
         }
     }
