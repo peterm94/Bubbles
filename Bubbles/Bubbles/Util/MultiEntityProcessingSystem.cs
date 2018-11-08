@@ -1,54 +1,26 @@
 using System.Collections.Generic;
+using Bubbles.Components;
 using Nez;
 
-namespace Bubbles
+namespace Bubbles.Util
 {
     /// <summary>
     ///     Entity system that allows for other entity types to be referenced while processing.
     /// </summary>
-    public abstract class MultiEntityProcessingSystem : EntitySystem
+    public abstract class MultiEntityProcessingSystem : EntityProcessingSystem
     {
-        private readonly Dictionary<string, MatchedSystem> _systems = new Dictionary<string, MatchedSystem>();
+        private readonly Scene _init_scene;
 
-        /// <summary>
-        ///     Create a new processing system.
-        /// </summary>
-        /// <param name="scene">The scene this system is being created in. Required to register inner matchers.</param>
-        /// <param name="matcher">The entity matcher.</param>
-        /// <param name="others">Any other entities that should be made available while processing. They will be
-        /// referenced by their name in the process loop.</param>
-        public MultiEntityProcessingSystem(Scene scene,
-                                           Matcher matcher,
-                                           Dictionary<string, Matcher> others) : base(matcher)
+        protected MultiEntityProcessingSystem(Scene scene, Matcher matcher) : base(matcher)
         {
-            foreach (var pair in others)
-            {
-                var subSystem = new MatchedSystem(pair.Value);
-                scene.addEntityProcessor(subSystem);
-                _systems.Add(pair.Key, subSystem);
-            }
+            _init_scene = scene;
         }
 
-        protected override void process(List<Entity> entities)
+        protected MatchedSystem InjectEntityMatcher(Matcher entityMatcher)
         {
-            foreach (var entity in entities)
-            {
-                process(entity, _systems);
-            }
-        }
-
-        protected override void lateProcess(List<Entity> entities)
-        {
-            foreach (var entity in entities)
-            {
-                lateProcess(entity, _systems);
-            }
-        }
-
-        protected abstract void process(Entity entity, Dictionary<string, MatchedSystem> others);
-
-        protected virtual void lateProcess(Entity entity, Dictionary<string, MatchedSystem> others)
-        {
+            var system = new MatchedSystem(entityMatcher);
+            _init_scene.addEntityProcessor(system);
+            return system;
         }
     }
 
@@ -58,7 +30,7 @@ namespace Bubbles
         {
         }
 
-        public List<Entity> getEntities()
+        public List<Entity> Entities()
         {
             return _entities;
         }

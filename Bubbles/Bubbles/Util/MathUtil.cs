@@ -1,8 +1,8 @@
 using System;
 
-namespace Bubbles
+namespace Bubbles.Util
 {
-    public static class Util
+    public static class MathUtil
     {
         /// <summary>
         /// Float equality with a default tolerance.

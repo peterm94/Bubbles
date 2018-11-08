@@ -1,5 +1,6 @@
 using System;
 using Bubbles.Components;
+using Bubbles.Util;
 using Microsoft.Xna.Framework;
 using Nez;
 
@@ -18,7 +19,7 @@ namespace Bubbles.Systems
         {
             var motion = entity.getComponent<Motion>();
 
-            if (Util.FloatEquals(motion.Speed, 0)) return;
+            if (MathUtil.FloatEquals(motion.Speed, 0)) return;
 
             entity.position += motion.Direction * motion.Speed * Time.deltaTime;
 

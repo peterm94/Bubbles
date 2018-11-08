@@ -1,20 +1,24 @@
 using System;
 using System.Collections.Generic;
+using Bubbles.Components;
+using Bubbles.Util;
 using Nez;
 
 namespace Bubbles.Systems
 {
     public class TestMultiSystem : MultiEntityProcessingSystem
     {
-        public TestMultiSystem(Scene scene, Matcher matcher, Dictionary<string, Matcher> others)
-            : base(scene, matcher, others)
+        private readonly MatchedSystem enemies;
+
+        public TestMultiSystem(Scene scene) : base(scene, new Matcher().all(typeof(Player)))
         {
+            enemies = InjectEntityMatcher(new Matcher().all(typeof(Enemy)));
         }
 
-        protected override void process(Entity entity, Dictionary<string, MatchedSystem> others)
+        public override void process(Entity entity)
         {
             Console.WriteLine("I am " + entity.name);
-            Console.WriteLine("I can see: " + others["enemies"].getEntities().Count + " enemies.");
+            Console.WriteLine("I can see: " + enemies.Entities().Count + " enemies.");
         }
     }
 }
