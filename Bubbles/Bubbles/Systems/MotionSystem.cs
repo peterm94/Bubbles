@@ -1,5 +1,6 @@
 using System;
 using Bubbles.Components;
+using Microsoft.Xna.Framework;
 using Nez;
 
 namespace Bubbles.Systems
@@ -22,7 +23,6 @@ namespace Bubbles.Systems
             entity.position += motion.Direction * motion.Speed * Time.deltaTime;
 
             motion.Speed = Math.Max(motion.Speed - (motion.Friction * Time.deltaTime), 0);
-            Console.WriteLine(motion.Speed);
         }
     }
 }

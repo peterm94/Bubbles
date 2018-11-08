@@ -54,7 +54,9 @@
     <Compile Include="Systems\Direction.cs" />
     <Compile Include="Systems\MotionSystem.cs" />
     <Compile Include="Systems\PlayerInput.cs" />
-    <Compile Include="Util.cs" />
+    <Compile Include="Systems\TestMultiSystem.cs" />
+    <Compile Include="Util\MultiEntityProcessingSystem.cs" />
+    <Compile Include="Util\Util.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

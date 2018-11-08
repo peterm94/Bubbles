@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.IO;
 using Bubbles.Components;
 using Bubbles.Systems;
@@ -28,6 +29,12 @@ namespace Bubbles.Scenes
             player.addComponent(new Motion());
             player.transform.position = new Vector2(256, 144);
 
+            for (int i = 0; i < 10; i++)
+            {
+                var enemy = createEntity("Enemy");
+                enemy.addComponent(new Enemy());
+            }
+
             var cursor = createEntity("Cursor");
             var crosshair =
                 Texture2D.FromStream(Core.graphicsDevice, File.OpenRead("../../Content/textures/crosshair.png"));
@@ -38,6 +45,12 @@ namespace Bubbles.Scenes
             addEntityProcessor(new CursorPosition());
             addEntityProcessor(new MotionSystem());
             addEntityProcessor(new Direction(new Matcher().all(typeof(Player)), cursor));
+            addEntityProcessor(new TestMultiSystem(this,
+                                                   new Matcher().all(typeof(Player)),
+                                                   new Dictionary<string, Matcher>
+                                                   {
+                                                       {"enemies", new Matcher().all(typeof(Enemy))}
+                                                   }));
         }
     }
 }
