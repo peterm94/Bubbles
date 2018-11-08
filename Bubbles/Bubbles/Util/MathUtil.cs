@@ -5,7 +5,7 @@ namespace Bubbles.Util
     public static class MathUtil
     {
         /// <summary>
-        /// Float equality with a default tolerance.
+        ///     Float equality with a default tolerance.
         /// </summary>
         /// <param name="f1">The first value the compare.</param>
         /// <param name="f2">The second value to compare to.</param>

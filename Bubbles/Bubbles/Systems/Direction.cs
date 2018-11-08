@@ -1,7 +1,4 @@
 using System;
-using System.Security.Cryptography;
-using Bubbles.Components;
-using Microsoft.Xna.Framework;
 using Nez;
 
 namespace Bubbles.Systems
@@ -19,8 +16,8 @@ namespace Bubbles.Systems
         {
             var dir = Math.Atan2(to.position.Y - entity.position.Y,
                                  to.position.X - entity.position.X);
-                
-            entity.setRotation((float)dir);
+
+            entity.setRotation((float) dir);
         }
     }
 }

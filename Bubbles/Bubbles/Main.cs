@@ -3,7 +3,7 @@ using Nez;
 
 namespace Bubbles
 {
-    public class Main : Nez.Core
+    public class Main : Core
     {
         public Main() : base(1920, 1080)
         {

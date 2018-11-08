@@ -13,8 +13,8 @@ namespace Bubbles.Components
         public float Speed { get; set; }
 
         /// <summary>
-        /// Direction to move in.
-        /// TODO instead of changing this directly, we should apply a force to preserve momentum.
+        ///     Direction to move in.
+        ///     TODO instead of changing this directly, we should apply a force to preserve momentum.
         /// </summary>
         public Vector2 Direction { get; set; }
     }

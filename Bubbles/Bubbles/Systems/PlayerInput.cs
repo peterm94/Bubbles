@@ -1,4 +1,3 @@
-using System;
 using Bubbles.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -36,7 +35,7 @@ namespace Bubbles.Systems
             {
                 moveDir.Y++;
             }
-            
+
             if (moveDir != Vector2.Zero)
             {
                 var motion = entity.getComponent<Motion>();
