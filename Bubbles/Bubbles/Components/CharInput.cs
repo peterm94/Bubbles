@@ -1,3 +1,4 @@
+using System;
 using Nez;
 
 namespace Bubbles.Components
@@ -15,6 +16,11 @@ namespace Bubbles.Components
             MoveDown = false;
             MoveLeft = false;
             MoveRight = false;
+        }
+
+        public bool AnyMove()
+        {
+            return MoveUp || MoveDown || MoveLeft || MoveRight;
         }
     }
 }

@@ -37,7 +37,8 @@ namespace Bubbles.Scenes
             addEntityProcessor(new MovementSystem());
             addEntityProcessor(new EntityMousePositionSystem());
             addEntityProcessor(new PhysicsSystem());
-            addEntityProcessor(new HeadTowardsEntitySystem(new Matcher().all(typeof(Player)), cursor));
+            addEntityProcessor(new AnimatedEntitySystem());
+//            addEntityProcessor(new HeadTowardsEntitySystem(new Matcher().all(typeof(Player)), cursor));
             addEntityProcessor(new TestMultiSystem(this));
         }
     }
