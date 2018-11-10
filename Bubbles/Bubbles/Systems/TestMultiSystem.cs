@@ -16,8 +16,8 @@ namespace Bubbles.Systems
 
         public override void process(Entity entity)
         {
-            Console.WriteLine("I am " + entity.name);
-            Console.WriteLine("I can see: " + enemies.Entities().Count + " enemies.");
+//            Console.WriteLine("I am " + entity.name);
+//            Console.WriteLine("I can see: " + enemies.Entities().Count + " enemies.");
         }
     }
 }
