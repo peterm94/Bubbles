@@ -24,7 +24,9 @@ namespace Bubbles.Entities
             var sprite = addComponent(new Sprite<Animations>(subTextures[0]));
 
             // Register the walk animation and start it
-            sprite.addAnimation(Animations.Walk, new SpriteAnimation(subTextures));
+            var animation = new SpriteAnimation(subTextures);
+            animation.setFps(2);
+            sprite.addAnimation(Animations.Walk, animation);
             sprite.play(Animations.Walk);
 
             addComponent(new Player());
