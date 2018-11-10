@@ -34,8 +34,9 @@ namespace Bubbles.Scenes
             cursor.addComponent(new Cursor());
 
             addEntityProcessor(new PlayerInputSystem());
+            addEntityProcessor(new MovementSystem());
             addEntityProcessor(new EntityMousePositionSystem());
-            addEntityProcessor(new MotionSystem());
+            addEntityProcessor(new PhysicsSystem());
             addEntityProcessor(new HeadTowardsEntitySystem(new Matcher().all(typeof(Player)), cursor));
             addEntityProcessor(new TestMultiSystem(this));
         }

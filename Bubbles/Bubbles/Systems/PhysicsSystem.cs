@@ -8,9 +8,9 @@ namespace Bubbles.Systems
     /// <summary>
     ///     Move entities with a Motion component.
     /// </summary>
-    public class MotionSystem : EntityProcessingSystem
+    public class PhysicsSystem : EntityProcessingSystem
     {
-        public MotionSystem() : base(new Matcher().all(typeof(Motion)))
+        public PhysicsSystem() : base(new Matcher().all(typeof(Motion)))
         {
         }
 

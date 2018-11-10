@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\CharInput.cs" />
     <Compile Include="Components\Motion.cs" />
     <Compile Include="Components\Tags.cs" />
     <Compile Include="Entities\PlayerEntity.cs" />
@@ -53,7 +54,8 @@
     <Compile Include="Scenes\MainScene.cs" />
     <Compile Include="Systems\EntityMousePositionSystem.cs" />
     <Compile Include="Systems\HeadTowardsEntitySystem.cs" />
-    <Compile Include="Systems\MotionSystem.cs" />
+    <Compile Include="Systems\PhysicsSystem.cs" />
+    <Compile Include="Systems\MovementSystem.cs" />
     <Compile Include="Systems\PlayerInputSystem.cs" />
     <Compile Include="Systems\TestMultiSystem.cs" />
     <Compile Include="Util\MultiEntityProcessingSystem.cs" />
