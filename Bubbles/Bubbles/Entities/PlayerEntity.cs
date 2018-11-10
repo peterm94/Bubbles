@@ -1,4 +1,5 @@
 using Bubbles.Components;
+using Bubbles.Systems;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Nez;
@@ -9,11 +10,6 @@ namespace Bubbles.Entities
 {
     public class PlayerEntity : Entity
     {
-        enum Animations
-        {
-            Walk
-        }
-
         public PlayerEntity() : base("Player")
         {
             // Load the textures in
@@ -21,16 +17,18 @@ namespace Bubbles.Entities
             var subTextures = Subtexture.subtexturesFromAtlas(tex, 32, tex.Height);
 
             // Create the sprite component with the first frame loaded by default.
-            var sprite = addComponent(new Sprite<Animations>(subTextures[0]));
+            var sprite = addComponent(new Sprite<AnimatedEntitySystem.Animations>(subTextures[0]));
 
             // Register the walk animation and start it
-            var animation = new SpriteAnimation(subTextures);
-            animation.setFps(2);
-            sprite.addAnimation(Animations.Walk, animation);
-            sprite.play(Animations.Walk);
+            var walkAnim = new SpriteAnimation(subTextures);
+            walkAnim.setFps(6);
+            var idleAnim = new SpriteAnimation(subTextures[0]);
+            sprite.addAnimation(AnimatedEntitySystem.Animations.Walk, walkAnim);
+            sprite.addAnimation(AnimatedEntitySystem.Animations.Idle, idleAnim);
 
             addComponent(new Player());
             addComponent(new PlayerControlled());
+            addComponent(new CharInput());
             addComponent(new Motion());
             transform.position = new Vector2(256, 144);
         }
