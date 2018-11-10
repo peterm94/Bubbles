@@ -5,11 +5,11 @@ using Nez;
 
 namespace Bubbles.Systems
 {
-    public class PlayerInput : EntityProcessingSystem
+    public class PlayerInputSystem : EntityProcessingSystem
     {
         private const float speed = 100f;
 
-        public PlayerInput() : base(new Matcher().all(typeof(PlayerControlled), typeof(Motion)))
+        public PlayerInputSystem() : base(new Matcher().all(typeof(PlayerControlled), typeof(Motion)))
         {
         }
 

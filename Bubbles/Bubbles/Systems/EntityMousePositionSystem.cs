@@ -3,9 +3,9 @@ using Nez;
 
 namespace Bubbles.Systems
 {
-    public class CursorPosition : EntityProcessingSystem
+    public class EntityMousePositionSystem : EntityProcessingSystem
     {
-        public CursorPosition() : base(new Matcher().all(typeof(Cursor)))
+        public EntityMousePositionSystem() : base(new Matcher().all(typeof(Cursor)))
         {
         }
 

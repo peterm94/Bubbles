@@ -3,11 +3,11 @@ using Nez;
 
 namespace Bubbles.Systems
 {
-    public class Direction : EntityProcessingSystem
+    public class HeadTowardsEntitySystem : EntityProcessingSystem
     {
         private readonly Entity to;
 
-        public Direction(Matcher matcher, Entity to) : base(matcher)
+        public HeadTowardsEntitySystem(Matcher matcher, Entity to) : base(matcher)
         {
             this.to = to;
         }

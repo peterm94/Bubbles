@@ -51,10 +51,10 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scenes\MainScene.cs" />
-    <Compile Include="Systems\CursorPosition.cs" />
-    <Compile Include="Systems\Direction.cs" />
+    <Compile Include="Systems\EntityMousePositionSystem.cs" />
+    <Compile Include="Systems\HeadTowardsEntitySystem.cs" />
     <Compile Include="Systems\MotionSystem.cs" />
-    <Compile Include="Systems\PlayerInput.cs" />
+    <Compile Include="Systems\PlayerInputSystem.cs" />
     <Compile Include="Systems\TestMultiSystem.cs" />
     <Compile Include="Util\MultiEntityProcessingSystem.cs" />
     <Compile Include="Util\MathUtil.cs" />

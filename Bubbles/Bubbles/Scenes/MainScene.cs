@@ -5,7 +5,6 @@ using Bubbles.Systems;
 using Microsoft.Xna.Framework.Graphics;
 using Nez;
 using Nez.Sprites;
-using Direction = Bubbles.Systems.Direction;
 
 namespace Bubbles.Scenes
 {
@@ -34,10 +33,10 @@ namespace Bubbles.Scenes
             cursor.addComponent(new Sprite(crosshair));
             cursor.addComponent(new Cursor());
 
-            addEntityProcessor(new PlayerInput());
-            addEntityProcessor(new CursorPosition());
+            addEntityProcessor(new PlayerInputSystem());
+            addEntityProcessor(new EntityMousePositionSystem());
             addEntityProcessor(new MotionSystem());
-            addEntityProcessor(new Direction(new Matcher().all(typeof(Player)), cursor));
+            addEntityProcessor(new HeadTowardsEntitySystem(new Matcher().all(typeof(Player)), cursor));
             addEntityProcessor(new TestMultiSystem(this));
         }
     }

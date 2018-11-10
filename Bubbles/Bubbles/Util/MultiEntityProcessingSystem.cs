@@ -3,6 +3,7 @@ using Nez;
 
 namespace Bubbles.Util
 {
+    /// <inheritdoc />
     /// <summary>
     ///     Entity system that allows for other entity types to be referenced while processing.
     /// </summary>
