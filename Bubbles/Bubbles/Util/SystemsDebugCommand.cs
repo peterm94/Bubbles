@@ -41,28 +41,32 @@ namespace Bubbles.Util
             }
 
             var asm = Assembly.GetExecutingAssembly();
-            var systemType = asm.GetTypes().FirstOrDefault(p => p.Namespace.StartsWith("Bubbles") &&
-                                                                p.Name.Contains(systemName));
+            var systemTypes = asm.GetTypes().Where(p => p.Namespace.StartsWith("Bubbles") &&
+                                                        p.Name.Contains(systemName) &&
+                                                        p.IsSubclassOf(typeof(EntitySystem))).ToArray();
 
-            if (systemType == null)
+            if (systemTypes.Length == 0)
             {
                 DebugConsole.instance.log($"Could not find system with type '{systemName}'.");
                 return;
             }
 
-            var method = typeof(Scene).GetMethod("getEntityProcessor")?.MakeGenericMethod(systemType);
-
-            if (method != null)
+            foreach (var systemType in systemTypes)
             {
-                var system = method.Invoke(Core.scene, null);
+                var method = typeof(Scene).GetMethod("getEntityProcessor")?.MakeGenericMethod(systemType);
 
-                var entities = typeof(EntitySystem).GetField("_entities",
-                                                             BindingFlags.NonPublic | BindingFlags.Instance)
-                                                   ?.GetValue(system) as List<Entity>;
-                var entityList = string.Join(", ", entities.Select(x => x.name).ToArray());
-                DebugConsole.instance.log($"{system.GetType().Name}" +
-                                          $"\n- Entity Count: {entities.Count}" +
-                                          $"\n- Entity List: [{entityList}]");
+                if (method != null)
+                {
+                    var system = method.Invoke(Core.scene, null);
+
+                    var entities = typeof(EntitySystem).GetField("_entities",
+                                                                 BindingFlags.NonPublic | BindingFlags.Instance)
+                                                       ?.GetValue(system) as List<Entity>;
+                    var entityList = string.Join(", ", entities.Select(x => x.name).ToArray());
+                    DebugConsole.instance.log($"{system.GetType().Name}" +
+                                              $"\n- Entity Count: {entities.Count}" +
+                                              $"\n- Entity List: [{entityList}]");
+                }
             }
         }
     }
