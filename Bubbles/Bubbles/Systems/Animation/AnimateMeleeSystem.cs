@@ -24,13 +24,17 @@ namespace Bubbles.Systems
             if (input.Swing)
             {
                 if (!sprite.isAnimationPlaying(Animations.Swing))
+                {
                     sprite.play(Animations.Swing);
+                    sprite.entity.setRotationDegrees(-270);
+                }                    
             }
             else
             {
                 if (!sprite.isAnimationPlaying(Animations.Idle))
                 {
                     sprite.play(Animations.Idle);
+                    sprite.entity.setRotation(0);
                 }
             }
         }

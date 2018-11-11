@@ -1,12 +1,10 @@
-using System.IO;
 using Bubbles.Components;
 using Bubbles.Entities;
 using Bubbles.Systems;
+using Bubbles.Systems.Controls;
 using Bubbles.Systems.Position;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Nez;
-using Nez.Sprites;
 
 namespace Bubbles.Scenes
 {
@@ -22,26 +20,28 @@ namespace Bubbles.Scenes
             addRenderer(new RenderLayerExcludeRenderer(0, SCREEN_SPACE_RENDER_LAYER));
 
             var player = new PlayerEntity();
-                        addEntity(player);
+            addEntity(player);
 
             var sword = new SwordEntity();
-            sword.setPosition(new Vector2(28, 16));
+            sword.setPosition(new Vector2(0, 16));
             sword.setParent(player);
             addEntity(sword);
 
             addEntity(new CursorEntity());
-            
+
             for (int i = 0; i < 10; i++)
             {
                 var enemy = createEntity("Enemy");
                 enemy.addComponent(new Enemy());
             }
 
-            addEntityProcessor(new PlayerInputSystem());
+            addEntityProcessor(new MovementInputSystem());
+            addEntityProcessor(new MeleeInputSystem());
             addEntityProcessor(new MovementSystem());
             addEntityProcessor(new TrackMouseSystem());
             addEntityProcessor(new PhysicsSystem());
             addEntityProcessor(new AnimateMovementSystem());
+            addEntityProcessor(new AnimateMeleeSystem());
 //            addEntityProcessor(new HeadTowardsEntitySystem(new Matcher().all(typeof(Player)), cursor));
             addEntityProcessor(new TestMultiSystem(this));
         }

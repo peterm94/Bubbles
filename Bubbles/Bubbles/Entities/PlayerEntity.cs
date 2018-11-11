@@ -29,6 +29,7 @@ namespace Bubbles.Entities
             addComponent(new Player());
             addComponent(new PlayerControlled());
             addComponent(new MovementInput());
+            addComponent(new MeleeInput());
             addComponent(new Motion());
             transform.position = new Vector2(256, 144);
         }
