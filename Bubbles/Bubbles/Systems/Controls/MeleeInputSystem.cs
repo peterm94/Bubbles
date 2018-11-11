@@ -1,4 +1,5 @@
 using Bubbles.Components;
+using Microsoft.Xna.Framework.Input;
 using Nez;
 
 namespace Bubbles.Systems.Controls
@@ -17,7 +18,7 @@ namespace Bubbles.Systems.Controls
 
             inputState.Clear();
 
-            if (Input.leftMouseButtonDown)
+            if (Input.leftMouseButtonDown || Input.isKeyDown(Keys.E))
                 inputState.Swing = true;
         }
     }

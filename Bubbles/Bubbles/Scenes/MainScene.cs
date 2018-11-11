@@ -1,6 +1,7 @@
 using Bubbles.Components;
 using Bubbles.Entities;
 using Bubbles.Systems;
+using Bubbles.Systems.Animation;
 using Bubbles.Systems.Controls;
 using Bubbles.Systems.Position;
 using Microsoft.Xna.Framework;

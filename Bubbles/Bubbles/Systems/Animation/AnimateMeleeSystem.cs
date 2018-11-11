@@ -2,7 +2,7 @@ using Bubbles.Components;
 using Nez;
 using Nez.Sprites;
 
-namespace Bubbles.Systems
+namespace Bubbles.Systems.Animation
 {
     public class AnimateMeleeSystem : EntityProcessingSystem
     {
@@ -26,16 +26,13 @@ namespace Bubbles.Systems
                 if (!sprite.isAnimationPlaying(Animations.Swing))
                 {
                     sprite.play(Animations.Swing);
-                    sprite.entity.setRotationDegrees(-270);
+                    sprite.onAnimationCompletedEvent += animations => sprite.play(Animations.Idle);
                 }                    
             }
-            else
+
+            if (!sprite.isPlaying)
             {
-                if (!sprite.isAnimationPlaying(Animations.Idle))
-                {
-                    sprite.play(Animations.Idle);
-                    sprite.entity.setRotation(0);
-                }
+                sprite.play(Animations.Idle);
             }
         }
     }
