@@ -41,12 +41,13 @@ namespace Bubbles.Util
             }
 
             var asm = Assembly.GetExecutingAssembly();
-            var systemType = asm.GetTypes().First(p => p.Namespace.StartsWith("Bubbles") &&
-                                                       p.Name.Contains(systemName));
+            var systemType = asm.GetTypes().FirstOrDefault(p => p.Namespace.StartsWith("Bubbles") &&
+                                                                p.Name.Contains(systemName));
 
             if (systemType == null)
             {
                 DebugConsole.instance.log($"Could not find system with type '{systemName}'.");
+                return;
             }
 
             var method = typeof(Scene).GetMethod("getEntityProcessor")?.MakeGenericMethod(systemType);
@@ -59,7 +60,7 @@ namespace Bubbles.Util
                                                              BindingFlags.NonPublic | BindingFlags.Instance)
                                                    ?.GetValue(system) as List<Entity>;
                 var entityList = string.Join(", ", entities.Select(x => x.name).ToArray());
-                DebugConsole.instance.log($"{systemName}" +
+                DebugConsole.instance.log($"{system.GetType().Name}" +
                                           $"\n- Entity Count: {entities.Count}" +
                                           $"\n- Entity List: [{entityList}]");
             }
