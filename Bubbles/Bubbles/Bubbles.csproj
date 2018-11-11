@@ -58,8 +58,8 @@
     <Compile Include="Systems\Animation\AnimateMovementSystem.cs" />
     <Compile Include="Systems\Animation\AnimateMeleeSystem.cs" />
     <Compile Include="Systems\HeadTowardsEntitySystem.cs" />
-    <Compile Include="Systems\Input\MeleeInputSystem.cs" />
-    <Compile Include="Systems\Input\MovementInputSystem.cs" />
+    <Compile Include="Systems\Controls\MeleeInputSystem.cs" />
+    <Compile Include="Systems\Controls\MovementInputSystem.cs" />
     <Compile Include="Systems\PhysicsSystem.cs" />
     <Compile Include="Systems\MovementSystem.cs" />
     <Compile Include="Systems\Position\TrackMouseSystem.cs" />
