@@ -22,15 +22,16 @@ namespace Bubbles.Scenes
             addRenderer(new RenderLayerExcludeRenderer(0, SCREEN_SPACE_RENDER_LAYER));
 
             var player = new PlayerEntity();
-                        addEntity(player);
+            addEntity(player);
 
             var sword = new SwordEntity();
             sword.setPosition(new Vector2(28, 16));
             sword.setParent(player);
+            sword.addComponent(new RotateTowardsMouse());
             addEntity(sword);
 
             addEntity(new CursorEntity());
-            
+
             for (int i = 0; i < 10; i++)
             {
                 var enemy = createEntity("Enemy");
@@ -44,6 +45,7 @@ namespace Bubbles.Scenes
             addEntityProcessor(new AnimateMovementSystem());
 //            addEntityProcessor(new HeadTowardsEntitySystem(new Matcher().all(typeof(Player)), cursor));
             addEntityProcessor(new TestMultiSystem(this));
+            addEntityProcessor(new RotateTowardsMouseSystem());
         }
     }
 }

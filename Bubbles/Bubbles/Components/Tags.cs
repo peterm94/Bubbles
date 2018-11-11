@@ -17,4 +17,8 @@ namespace Bubbles.Components
     public class Enemy : Component
     {
     }
+
+    public class RotateTowardsMouse : Component
+    {
+    }
 }
