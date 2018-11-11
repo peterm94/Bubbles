@@ -17,18 +17,18 @@ namespace Bubbles.Entities
             var subTextures = Subtexture.subtexturesFromAtlas(tex, 32, tex.Height);
 
             // Create the sprite component with the first frame loaded by default.
-            var sprite = addComponent(new Sprite<AnimatedEntitySystem.Animations>(subTextures[0]));
+            var sprite = addComponent(new Sprite<AnimateMovementSystem.Animations>(subTextures[0]));
 
             // Register the walk animation and start it
             var walkAnim = new SpriteAnimation(subTextures);
             walkAnim.setFps(6);
             var idleAnim = new SpriteAnimation(subTextures[0]);
-            sprite.addAnimation(AnimatedEntitySystem.Animations.Walk, walkAnim);
-            sprite.addAnimation(AnimatedEntitySystem.Animations.Idle, idleAnim);
+            sprite.addAnimation(AnimateMovementSystem.Animations.Walk, walkAnim);
+            sprite.addAnimation(AnimateMovementSystem.Animations.Idle, idleAnim);
 
             addComponent(new Player());
             addComponent(new PlayerControlled());
-            addComponent(new CharInput());
+            addComponent(new MovementInput());
             addComponent(new Motion());
             transform.position = new Vector2(256, 144);
         }

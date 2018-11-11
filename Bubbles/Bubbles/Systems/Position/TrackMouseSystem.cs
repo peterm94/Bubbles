@@ -1,11 +1,11 @@
 using Bubbles.Components;
 using Nez;
 
-namespace Bubbles.Systems
+namespace Bubbles.Systems.Position
 {
-    public class EntityMousePositionSystem : EntityProcessingSystem
+    public class TrackMouseSystem : EntityProcessingSystem
     {
-        public EntityMousePositionSystem() : base(new Matcher().all(typeof(Cursor)))
+        public TrackMouseSystem() : base(new Matcher().all(typeof(Cursor)))
         {
         }
 

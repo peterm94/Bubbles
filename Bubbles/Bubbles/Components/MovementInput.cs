@@ -3,7 +3,7 @@ using Nez;
 
 namespace Bubbles.Components
 {
-    public class CharInput : Component
+    public class MovementInput : Component
     {
         public bool MoveUp { get; set; }
         public bool MoveDown { get; set; }

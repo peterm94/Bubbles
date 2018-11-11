@@ -6,13 +6,13 @@ namespace Bubbles.Systems
 {
     public class PlayerInputSystem : EntityProcessingSystem
     {
-        public PlayerInputSystem() : base(new Matcher().all(typeof(PlayerControlled), typeof(CharInput)))
+        public PlayerInputSystem() : base(new Matcher().all(typeof(PlayerControlled), typeof(MovementInput)))
         {
         }
 
         public override void process(Entity entity)
         {
-            var inputState = entity.getComponent<CharInput>();
+            var inputState = entity.getComponent<MovementInput>();
 
             inputState.Clear();
 
