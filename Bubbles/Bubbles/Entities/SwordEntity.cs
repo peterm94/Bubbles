@@ -28,10 +28,14 @@ namespace Bubbles.Entities
 
             sprite.addAnimation(AnimateMeleeSystem.Animations.Swing, swingAnim);
             sprite.addAnimation(AnimateMeleeSystem.Animations.Idle, idleAnim);
-
+//            sprite.setOrigin(new Vector2(0, 0));
+//            sprite.setLocalOffset(new Vector2(0, 0));
+            
             addComponent(new PlayerControlled());
             addComponent(new Weapon());
             addComponent(new MeleeInput());
+//            addComponent(new BoxCollider(0, 0, 56, 36));
+//            addComponent(new BoxCollider());
         }
     }
 }

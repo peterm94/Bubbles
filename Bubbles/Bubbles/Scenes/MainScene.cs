@@ -26,9 +26,9 @@ namespace Bubbles.Scenes
             var sword = new SwordEntity();
             sword.setPosition(new Vector2(0, 16));
             sword.setParent(player);
-            sword.addComponent(new RotateTowardsMouse());
+//            sword.addComponent(new RotateTowardsMouse());
             addEntity(sword);
-
+            
             addEntity(new CursorEntity());
 
             for (int i = 0; i < 10; i++)

@@ -21,6 +21,8 @@ namespace Bubbles
             // Choosing a size that is slightly larger than your average player/enemy size usually works best.
             Physics.spatialHashCellSize = 64;
 
+            //            debugRenderEnabled = true;
+            
             Window.AllowUserResizing = true;
 
 
