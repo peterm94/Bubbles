@@ -22,11 +22,11 @@ namespace Bubbles.Scenes
             addRenderer(new RenderLayerExcludeRenderer(0, SCREEN_SPACE_RENDER_LAYER));
 
             var player = new PlayerEntity();
-            addEntity(player);
+                        addEntity(player);
 
             var sword = new SwordEntity();
-            var wielder = new Equipped {Wielder = player, Offset = new Vector2(28, 16)};
-            sword.addComponent(wielder);
+            sword.setPosition(new Vector2(28, 16));
+            sword.setParent(player);
             addEntity(sword);
 
             addEntity(new CursorEntity());
@@ -40,7 +40,6 @@ namespace Bubbles.Scenes
             addEntityProcessor(new PlayerInputSystem());
             addEntityProcessor(new MovementSystem());
             addEntityProcessor(new TrackMouseSystem());
-            addEntityProcessor(new TrackEquippedSystem());
             addEntityProcessor(new PhysicsSystem());
             addEntityProcessor(new AnimateMovementSystem());
 //            addEntityProcessor(new HeadTowardsEntitySystem(new Matcher().all(typeof(Player)), cursor));

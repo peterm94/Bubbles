@@ -48,7 +48,6 @@
     <Compile Include="Components\MovementInput.cs" />
     <Compile Include="Components\Motion.cs" />
     <Compile Include="Components\Tags.cs" />
-    <Compile Include="Components\Equipped.cs" />
     <Compile Include="Entities\CursorEntity.cs" />
     <Compile Include="Entities\PlayerEntity.cs" />
     <Compile Include="Entities\SwordEntity.cs" />
@@ -62,7 +61,6 @@
     <Compile Include="Systems\PhysicsSystem.cs" />
     <Compile Include="Systems\MovementSystem.cs" />
     <Compile Include="Systems\PlayerInputSystem.cs" />
-    <Compile Include="Systems\Position\TrackEquippedSystem.cs" />
     <Compile Include="Systems\Position\TrackMouseSystem.cs" />
     <Compile Include="Systems\TestMultiSystem.cs" />
     <Compile Include="Util\MultiEntityProcessingSystem.cs" />
