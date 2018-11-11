@@ -11,7 +11,7 @@ namespace Bubbles.Systems.Position
 
         public override void process(Entity entity)
         {
-            entity.setPosition(Input.scaledMousePosition);
+            entity.setPosition(Nez.Input.scaledMousePosition);
         }
     }
 }

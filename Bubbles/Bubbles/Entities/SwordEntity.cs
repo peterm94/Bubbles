@@ -1,3 +1,5 @@
+using System.Linq;
+using Bubbles.Components;
 using Bubbles.Systems;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -13,16 +15,20 @@ namespace Bubbles.Entities
         {
             var texture = Core.content.Load<Texture2D>("sword");
             var subTextures = Subtexture.subtexturesFromAtlas(texture, 64, 64);
-
-            var sprite = addComponent(new Sprite<AnimateMeleeSystem.Animations>(subTextures[0]));
+            
+            var sprite = addComponent(new Sprite<AnimateMeleeSystem.Animations>(subTextures[2]));
             
             var swingAnim = new SpriteAnimation(subTextures);
-            swingAnim.setFps(6);
+            swingAnim.setFps(12);
             
-            var idleAnim = new SpriteAnimation(subTextures[0]);
+            var idleAnim = new SpriteAnimation(subTextures[2]);
 
             sprite.addAnimation(AnimateMeleeSystem.Animations.Swing, swingAnim);
             sprite.addAnimation(AnimateMeleeSystem.Animations.Idle, idleAnim);
+
+            addComponent(new PlayerControlled());
+            addComponent(new Weapon());
+            addComponent(new MeleeInput());
         }
     }
 }
