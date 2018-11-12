@@ -65,6 +65,7 @@
     <Compile Include="Systems\Position\TrackMouseSystem.cs" />
     <Compile Include="Systems\RotateTowardsMouseSystem.cs" />
     <Compile Include="Systems\TestMultiSystem.cs" />
+    <Compile Include="Util\CustomDebugActions.cs" />
     <Compile Include="Util\MultiEntityProcessingSystem.cs" />
     <Compile Include="Util\MathUtil.cs" />
     <Compile Include="Util\SystemsDebugCommand.cs" />

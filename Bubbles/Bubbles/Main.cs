@@ -1,4 +1,5 @@
 using Bubbles.Scenes;
+using Bubbles.Util;
 using Nez;
 
 namespace Bubbles
@@ -22,9 +23,11 @@ namespace Bubbles
             Physics.spatialHashCellSize = 64;
 
             //            debugRenderEnabled = true;
-            
+
             Window.AllowUserResizing = true;
 
+            // Register custom actions
+            var actions = new CustomDebugActions(this);
 
             scene = new MainScene();
         }
