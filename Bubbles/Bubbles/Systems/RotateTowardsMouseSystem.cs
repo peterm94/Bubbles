@@ -1,3 +1,4 @@
+using System;
 using Bubbles.Components;
 using Microsoft.Xna.Framework;
 using Nez;
@@ -15,9 +16,11 @@ namespace Bubbles.Systems
         {
             var mousePos = Input.mousePosition;
 
-            var dirVector = mousePos;
+            var dir = Math.Atan2(mousePos.Y - entity.position.Y,
+                                 mousePos.X - entity.position.X);
 
-            entity.transform.setRotationDegrees(Vector2Ext.angle(dirVector, mousePos));
+            entity.setLocalRotation((float) dir);
+            entity.localRotationDegrees -= 90f;
         }
     }
 }
