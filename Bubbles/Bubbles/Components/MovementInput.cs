@@ -1,26 +1,33 @@
-using System;
+using Microsoft.Xna.Framework;
 using Nez;
 
 namespace Bubbles.Components
 {
     public class MovementInput : Component
     {
-        public bool MoveUp { get; set; }
-        public bool MoveDown { get; set; }
-        public bool MoveLeft { get; set; }
-        public bool MoveRight { get; set; }
+        public Vector2 MoveVector { get; private set; }
+
+        public void SetMove(Vector2 moveVector)
+        {
+            if (moveVector != Vector2.Zero)
+            {
+                Vector2.Normalize(ref moveVector, out var normalized);
+                MoveVector = normalized;
+            }
+            else
+            {
+                Clear();
+            }
+        }
 
         public void Clear()
         {
-            MoveUp = false;
-            MoveDown = false;
-            MoveLeft = false;
-            MoveRight = false;
+            MoveVector = Vector2.Zero;
         }
 
         public bool AnyMove()
         {
-            return MoveUp || MoveDown || MoveLeft || MoveRight;
+            return MoveVector != Vector2.Zero;
         }
     }
 }

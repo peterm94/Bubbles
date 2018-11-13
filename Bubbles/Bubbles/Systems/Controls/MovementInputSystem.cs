@@ -1,4 +1,5 @@
 using Bubbles.Components;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Nez;
 
@@ -6,8 +7,8 @@ namespace Bubbles.Systems.Controls
 {
     public class MovementInputSystem : EntityProcessingSystem
     {
-        public MovementInputSystem() : base(new Matcher().all(typeof(PlayerControlled), 
-                                                            typeof(MovementInput)))
+        public MovementInputSystem() : base(new Matcher().all(typeof(PlayerControlled),
+                                                              typeof(MovementInput)))
         {
         }
 
@@ -15,19 +16,21 @@ namespace Bubbles.Systems.Controls
         {
             var inputState = entity.getComponent<MovementInput>();
 
-            inputState.Clear();
+            var inputVector = Vector2.Zero;
 
             if (Input.isKeyDown(Keys.A))
-                inputState.MoveLeft = true;
+                inputVector.X--;
 
             if (Input.isKeyDown(Keys.D))
-                inputState.MoveRight = true;
+                inputVector.X++;
 
             if (Input.isKeyDown(Keys.W))
-                inputState.MoveUp = true;
+                inputVector.Y--;
 
             if (Input.isKeyDown(Keys.S))
-                inputState.MoveDown = true;
+                inputVector.Y++;
+
+            inputState.SetMove(inputVector);
         }
     }
 }
