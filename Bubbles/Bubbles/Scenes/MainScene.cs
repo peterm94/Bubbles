@@ -1,5 +1,6 @@
 using Bubbles.Components;
 using Bubbles.Entities;
+using Bubbles.Graphics.Renderers;
 using Bubbles.Systems;
 using Bubbles.Systems.Animation;
 using Bubbles.Systems.Controls;
@@ -47,6 +48,8 @@ namespace Bubbles.Scenes
 //            addEntityProcessor(new HeadTowardsEntitySystem(new Matcher().all(typeof(Player)), cursor));
             addEntityProcessor(new TestMultiSystem(this));
             addEntityProcessor(new RotateTowardsMouseSystem());
+                       
+            addRenderer(new BlackOutlineRenderer(1000));
         }
     }
 }
