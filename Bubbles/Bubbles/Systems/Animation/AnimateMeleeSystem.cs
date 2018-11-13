@@ -28,7 +28,11 @@ namespace Bubbles.Systems.Animation
                 if (!sprite.isAnimationPlaying(Animations.Swing))
                 {
                     sprite.play(Animations.Swing);
-                    sprite.onAnimationCompletedEvent += animations => sprite.play(Animations.Idle);
+                    sprite.onAnimationCompletedEvent += animations =>
+                    {
+                        sprite.play(Animations.Idle);
+                        transformLock.Locked = false;
+                    };
                     transformLock.Locked = true;
                 }
             }
@@ -36,7 +40,6 @@ namespace Bubbles.Systems.Animation
             if (!sprite.isPlaying)
             {
                 sprite.play(Animations.Idle);
-                transformLock.Locked = false;
             }
         }
     }
