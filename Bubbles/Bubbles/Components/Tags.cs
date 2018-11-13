@@ -21,8 +21,13 @@ namespace Bubbles.Components
     public class RotateTowardsMouse : Component
     {
     }
-    
+
     public class Weapon : Component
     {
+    }
+
+    public class AnimationLocked : Component
+    {
+        public bool Locked { get; set; } = false;
     }
 }

@@ -49,7 +49,9 @@
     <Compile Include="Components\Motion.cs" />
     <Compile Include="Components\Tags.cs" />
     <Compile Include="Entities\CursorEntity.cs" />
+    <Compile Include="Entities\MotionInfo.cs" />
     <Compile Include="Entities\PlayerEntity.cs" />
+    <Compile Include="Entities\SpriteMotion.cs" />
     <Compile Include="Entities\SwordEntity.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Program.cs" />
