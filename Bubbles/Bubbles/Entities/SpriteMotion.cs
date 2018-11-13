@@ -10,7 +10,7 @@ namespace Bubbles.Entities
     {
         private readonly Dictionary<TEnum, Dictionary<int, MotionInfo>> _motionStates;
         private Sprite<TEnum> _sprite;
-        private AnimationLocked _animLocked;
+        private TransformLock _transformLock;
 
         private TEnum _prevState;
         private int _prevFrame;
@@ -20,7 +20,7 @@ namespace Bubbles.Entities
         {
             base.onEnabled();
             _sprite = entity.getComponent<Sprite<TEnum>>();
-            _animLocked = entity.getComponent<AnimationLocked>();
+            _transformLock = entity.getComponent<TransformLock>();
         }
 
         public SpriteMotion()
@@ -100,14 +100,14 @@ namespace Bubbles.Entities
 
         private void ApplyMotion(MotionInfo motion)
         {
-            _animLocked.Locked = true;
+            _transformLock.Locked = true;
             _sprite.entity.setLocalPosition(motion.Offset);
             _sprite.entity.setLocalRotation(motion.Angle);
         }
 
         private void ClearMotion()
         {
-            _animLocked.Locked = false;
+            _transformLock.Locked = false;
         }
     }
 }

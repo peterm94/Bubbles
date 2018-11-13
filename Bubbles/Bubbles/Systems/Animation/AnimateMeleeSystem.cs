@@ -12,7 +12,8 @@ namespace Bubbles.Systems.Animation
             Idle
         }
 
-        public AnimateMeleeSystem() : base(new Matcher().all(typeof(MeleeInput), typeof(Sprite<Animations>)))
+        public AnimateMeleeSystem() : base(new Matcher().all(typeof(MeleeInput), typeof(Sprite<Animations>),
+                                                             typeof(TransformLock)))
         {
         }
 
@@ -20,6 +21,7 @@ namespace Bubbles.Systems.Animation
         {
             var input = entity.getComponent<MeleeInput>();
             var sprite = entity.getComponent<Sprite<Animations>>();
+            var transformLock = entity.getComponent<TransformLock>();
 
             if (input.Swing)
             {
@@ -27,12 +29,14 @@ namespace Bubbles.Systems.Animation
                 {
                     sprite.play(Animations.Swing);
                     sprite.onAnimationCompletedEvent += animations => sprite.play(Animations.Idle);
-                }                    
+                    transformLock.Locked = true;
+                }
             }
 
             if (!sprite.isPlaying)
             {
                 sprite.play(Animations.Idle);
+                transformLock.Locked = false;
             }
         }
     }

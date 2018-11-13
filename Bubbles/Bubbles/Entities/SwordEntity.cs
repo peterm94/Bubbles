@@ -35,7 +35,7 @@ namespace Bubbles.Entities
             addComponent(new Weapon());
             addComponent(new MeleeInput());
             addComponent(new RotateTowardsMouse());
-            addComponent(new AnimationLocked());
+            addComponent(new TransformLock());
 //            addComponent(new BoxCollider(0, 0, 56, 36));
 //            addComponent(new BoxCollider());
         }

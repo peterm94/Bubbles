@@ -19,7 +19,7 @@ namespace Bubbles.Systems
             var dir = Math.Atan2(mousePos.Y - entity.position.Y,
                                  mousePos.X - entity.position.X);
 
-            var animLocked = entity.getComponent<AnimationLocked>();
+            var animLocked = entity.getComponent<TransformLock>();
 
             if (animLocked == null || !animLocked.Locked)
             {
