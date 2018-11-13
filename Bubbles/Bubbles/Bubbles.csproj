@@ -49,6 +49,7 @@
     <Compile Include="Components\Motion.cs" />
     <Compile Include="Components\Tags.cs" />
     <Compile Include="Entities\CursorEntity.cs" />
+    <Compile Include="Entities\EnemyEntity.cs" />
     <Compile Include="Entities\PlayerEntity.cs" />
     <Compile Include="Entities\SwordEntity.cs" />
     <Compile Include="Graphics\Renderers\BlackOutlineRenderer.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="Scenes\MainScene.cs" />
     <Compile Include="Systems\Animation\AnimateMovementSystem.cs" />
     <Compile Include="Systems\Animation\AnimateMeleeSystem.cs" />
+    <Compile Include="Systems\ChargeEntitySystem.cs" />
     <Compile Include="Systems\HeadTowardsEntitySystem.cs" />
     <Compile Include="Systems\Controls\MeleeInputSystem.cs" />
     <Compile Include="Systems\Controls\MovementInputSystem.cs" />
