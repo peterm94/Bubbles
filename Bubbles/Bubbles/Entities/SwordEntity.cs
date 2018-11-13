@@ -1,8 +1,6 @@
 using System.Linq;
 using Bubbles.Components;
-using Bubbles.Systems;
 using Bubbles.Systems.Animation;
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Nez;
 using Nez.Sprites;

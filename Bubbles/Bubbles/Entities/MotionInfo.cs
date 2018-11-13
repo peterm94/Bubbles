@@ -4,13 +4,13 @@ namespace Bubbles.Entities
 {
     public struct MotionInfo
     {
-        public Vector2 Offset { get; private set; }
-        public float Angle { get; private set; }
+        public Vector2 Offset { get; }
+        public float Angle { get; }
 
         public MotionInfo(Vector2 offset, float angle)
         {
-            this.Offset = offset;
-            this.Angle = angle;
+            Offset = offset;
+            Angle = angle;
         }
     }
 }

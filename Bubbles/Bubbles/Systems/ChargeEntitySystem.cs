@@ -11,8 +11,8 @@ namespace Bubbles.Systems
         private readonly Entity _target;
         private Vector2 _destination;
         private Vector2 _direction;
-        private double _waitTime;
         private ITween<Vector2> _tween;
+        private double _waitTime;
 
         public ChargeEntitySystem(Matcher matcher, Entity target) : base(matcher)
         {
@@ -30,10 +30,11 @@ namespace Bubbles.Systems
                 {
                     return;
                 }
+
                 // Have waited long enough.
                 _waitTime = 0;
             }
-            
+
             if (_tween == null || !_tween.isRunning())
             {
                 StartTween(entity);

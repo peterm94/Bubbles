@@ -7,7 +7,7 @@ namespace Bubbles.Systems.Controls
     public class MeleeInputSystem : EntityProcessingSystem
     {
         public MeleeInputSystem() : base(new Matcher().all(typeof(PlayerControlled),
-                                                           typeof(Weapon), 
+                                                           typeof(Weapon),
                                                            typeof(MeleeInput)))
         {
         }

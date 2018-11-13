@@ -1,4 +1,3 @@
-using Microsoft.Xna.Framework.Input;
 using Nez;
 using Nez.Console;
 

@@ -1,8 +1,6 @@
 using System;
 using Bubbles.Components;
-using Microsoft.Xna.Framework;
 using Nez;
-using Nez.Sprites;
 
 namespace Bubbles.Systems
 {

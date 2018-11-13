@@ -9,19 +9,12 @@ namespace Bubbles.Entities
     public class SpriteMotion<TEnum> : Component, IUpdatable where TEnum : struct, IComparable, IFormattable
     {
         private readonly Dictionary<TEnum, Dictionary<int, MotionInfo>> _motionStates;
-        private Sprite<TEnum> _sprite;
-        private TransformLock _transformLock;
+        private Dictionary<int, MotionInfo> _currMotion;
+        private int _prevFrame;
 
         private TEnum _prevState;
-        private int _prevFrame;
-        private Dictionary<int, MotionInfo> _currMotion;
-
-        public override void onEnabled()
-        {
-            base.onEnabled();
-            _sprite = entity.getComponent<Sprite<TEnum>>();
-            _transformLock = entity.getComponent<TransformLock>();
-        }
+        private Sprite<TEnum> _sprite;
+        private TransformLock _transformLock;
 
         public SpriteMotion()
         {
@@ -31,20 +24,6 @@ namespace Bubbles.Entities
         public SpriteMotion(Dictionary<TEnum, Dictionary<int, MotionInfo>> motionStates)
         {
             _motionStates = motionStates;
-        }
-
-        public SpriteMotion<TEnum> addMotionInfo(TEnum key, int frame, MotionInfo motionInfo)
-        {
-            if (_motionStates.ContainsKey(key))
-            {
-                _motionStates[key][frame] = motionInfo;
-            }
-            else
-            {
-                _motionStates[key] = new Dictionary<int, MotionInfo> {[frame] = motionInfo};
-            }
-
-            return this;
         }
 
 
@@ -96,6 +75,27 @@ namespace Bubbles.Entities
 
             _prevState = currState;
             _prevFrame = currFrame;
+        }
+
+        public override void onEnabled()
+        {
+            base.onEnabled();
+            _sprite = entity.getComponent<Sprite<TEnum>>();
+            _transformLock = entity.getComponent<TransformLock>();
+        }
+
+        public SpriteMotion<TEnum> addMotionInfo(TEnum key, int frame, MotionInfo motionInfo)
+        {
+            if (_motionStates.ContainsKey(key))
+            {
+                _motionStates[key][frame] = motionInfo;
+            }
+            else
+            {
+                _motionStates[key] = new Dictionary<int, MotionInfo> {[frame] = motionInfo};
+            }
+
+            return this;
         }
 
         private void ApplyMotion(MotionInfo motion)
