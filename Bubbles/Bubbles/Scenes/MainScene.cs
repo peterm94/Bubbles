@@ -46,7 +46,7 @@ namespace Bubbles.Scenes
             addEntityProcessor(new RotateTowardsMouseSystem());
             addEntityProcessor(new ChargeEntitySystem(new Matcher().all(typeof(Enemy)), player));
 
-            addRenderer(new BlackOutlineRenderer(1000, camera));
+//            addRenderer(new BlackOutlineRenderer(1000, camera));
         }
     }
 }
