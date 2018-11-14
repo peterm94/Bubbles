@@ -16,26 +16,7 @@ namespace Bubbles.Systems
         {
             var inputState = entity.getComponent<MovementInput>();
 
-            var moveDir = Vector2.Zero;
-            if (inputState.MoveLeft)
-            {
-                moveDir.X--;
-            }
-
-            if (inputState.MoveRight)
-            {
-                moveDir.X++;
-            }
-
-            if (inputState.MoveUp)
-            {
-                moveDir.Y--;
-            }
-
-            if (inputState.MoveDown)
-            {
-                moveDir.Y++;
-            }
+            var moveDir = inputState.MoveVector;
 
             if (moveDir != Vector2.Zero)
             {

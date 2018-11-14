@@ -10,7 +10,7 @@ namespace Bubbles.Entities
         public CursorEntity() : base("Cursor")
         {
             var tex = Core.content.Load<Texture2D>("crosshair");
-            
+
             addComponent(new Sprite(tex));
             addComponent(new Cursor());
         }

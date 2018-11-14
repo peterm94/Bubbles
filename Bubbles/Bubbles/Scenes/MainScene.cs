@@ -29,14 +29,10 @@ namespace Bubbles.Scenes
             sword.setParent(player);
 //            sword.addComponent(new RotateTowardsMouse());
             addEntity(sword);
-            
+
             addEntity(new CursorEntity());
 
-            for (int i = 0; i < 10; i++)
-            {
-                var enemy = createEntity("Enemy");
-                enemy.addComponent(new Enemy());
-            }
+            addEntity(new EnemyEntity());
 
             addEntityProcessor(new MovementInputSystem());
             addEntityProcessor(new MeleeInputSystem());
@@ -48,8 +44,9 @@ namespace Bubbles.Scenes
 //            addEntityProcessor(new HeadTowardsEntitySystem(new Matcher().all(typeof(Player)), cursor));
             addEntityProcessor(new TestMultiSystem(this));
             addEntityProcessor(new RotateTowardsMouseSystem());
-                       
-            addRenderer(new BlackOutlineRenderer(1000));
+            addEntityProcessor(new ChargeEntitySystem(new Matcher().all(typeof(Enemy)), player));
+
+            addRenderer(new BlackOutlineRenderer(1000, camera));
         }
     }
 }

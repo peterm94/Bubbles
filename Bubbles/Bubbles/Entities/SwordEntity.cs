@@ -1,8 +1,6 @@
 using System.Linq;
 using Bubbles.Components;
-using Bubbles.Systems;
 using Bubbles.Systems.Animation;
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Nez;
 using Nez.Sprites;
@@ -35,6 +33,7 @@ namespace Bubbles.Entities
             addComponent(new Weapon());
             addComponent(new MeleeInput());
             addComponent(new RotateTowardsMouse());
+            addComponent(new TransformLock());
 //            addComponent(new BoxCollider(0, 0, 56, 36));
 //            addComponent(new BoxCollider());
         }
