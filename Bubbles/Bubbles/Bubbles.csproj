@@ -44,9 +44,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\FrameTriggerComponent.cs" />
     <Compile Include="Components\MeleeInput.cs" />
     <Compile Include="Components\MovementInput.cs" />
     <Compile Include="Components\Motion.cs" />
+    <Compile Include="Components\SpriteMove.cs" />
     <Compile Include="Components\Tags.cs" />
     <Compile Include="Components\TransformLock.cs" />
     <Compile Include="Entities\CursorEntity.cs" />

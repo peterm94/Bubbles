@@ -1,6 +1,7 @@
 using System.Linq;
 using Bubbles.Components;
 using Bubbles.Systems.Animation;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Nez;
 using Nez.Sprites;
@@ -36,6 +37,9 @@ namespace Bubbles.Entities
             addComponent(new TransformLock());
 //            addComponent(new BoxCollider(0, 0, 56, 36));
 //            addComponent(new BoxCollider());
+
+//            var spriteMove = addComponent(new SpriteMove<AnimateMeleeSystem.Animations>());
+//            spriteMove.AddAction(AnimateMeleeSystem.Animations.Swing, 0, new MotionInfo(new Vector2(10f, 10f), 10f));
         }
     }
 }

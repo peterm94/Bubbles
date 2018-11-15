@@ -2,7 +2,7 @@ using Microsoft.Xna.Framework;
 
 namespace Bubbles.Entities
 {
-    public struct MotionInfo: Action
+    public struct MotionInfo
     {
         public Vector2 Offset { get; }
         public float Angle { get; }

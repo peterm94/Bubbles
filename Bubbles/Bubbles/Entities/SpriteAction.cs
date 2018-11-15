@@ -6,12 +6,8 @@ using Nez.Sprites;
 
 namespace Bubbles.Entities
 {
-    public interface Action
-    {
-    }
-
     public abstract class SpriteAction<TEnum, ActionType> : Component, IUpdatable
-        where TEnum : struct, IComparable, IFormattable where ActionType : Action
+        where TEnum : struct, IComparable, IFormattable
     {
         protected abstract void Apply(ActionType action);
         protected abstract void Clear();

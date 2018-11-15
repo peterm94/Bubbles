@@ -20,7 +20,7 @@ namespace Bubbles.Entities
             _transformLock.Locked = false;
         }
 
-        public override void onEnabled()
+        public override void onAddedToEntity()
         {
             base.onEnabled();
             _transformLock = entity.getOrCreateComponent<TransformLock>();

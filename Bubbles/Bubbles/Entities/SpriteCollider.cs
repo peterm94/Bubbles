@@ -4,17 +4,17 @@ using Nez;
 
 namespace Bubbles.Entities
 {
-    public class SpriteCollider<TEnum> : Component, IUpdatable where TEnum : struct, IComparable, IFormattable
+    public class SpriteCollider<TEnum> : SpriteAction<TEnum, Collider> where TEnum : struct, IComparable, IFormattable
     {
-        private readonly Dictionary<TEnum, Dictionary<int, Collider>> _colliders;
-
-        public SpriteCollider()
+        protected override void Apply(Collider collider)
         {
-            _colliders = new Dictionary<TEnum, Dictionary<int, Collider>>();
+            // Enable the collider
+            collider.enabled = true;
         }
 
-        public void update()
+        protected override void Clear()
         {
+            throw new NotImplementedException();
         }
     }
 }
