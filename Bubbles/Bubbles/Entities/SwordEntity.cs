@@ -40,6 +40,15 @@ namespace Bubbles.Entities
 
 //            var spriteMove = addComponent(new SpriteMove<AnimateMeleeSystem.Animations>());
 //            spriteMove.AddAction(AnimateMeleeSystem.Animations.Swing, 0, new MotionInfo(new Vector2(10f, 10f), 10f));
+
+            var collider = addComponent(new SpriteCollider<AnimateMeleeSystem.Animations>());
+            collider.AddAction(AnimateMeleeSystem.Animations.Swing, 1,
+                               new PolygonCollider(new[]
+                               {
+                                   new Vector2(-30f, 30f),
+                                   new Vector2(0f, 0f),
+                                   new Vector2(30f, 30f)
+                               }));
         }
     }
 }
