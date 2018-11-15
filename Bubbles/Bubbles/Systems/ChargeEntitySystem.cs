@@ -1,4 +1,7 @@
+using System;
+using Bubbles.Components;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Nez;
 using Nez.Tweens;
 
@@ -6,53 +9,40 @@ namespace Bubbles.Systems
 {
     public class ChargeEntitySystem : EntityProcessingSystem
     {
-        private const int Delay = 1;
-
         private readonly Entity _target;
-        private Vector2 _destination;
-        private Vector2 _direction;
-        private ITween<Vector2> _tween;
-        private double _waitTime;
 
-        public ChargeEntitySystem(Matcher matcher, Entity target) : base(matcher)
+        public ChargeEntitySystem(Entity target) : base(new Matcher().all(typeof(Enemy)))
         {
             _target = target;
         }
 
         public override void process(Entity entity)
         {
-            if (_tween != null && !_tween.isRunning())
+            var tweenMotion = entity.getComponent<TweenMotion>();
+
+            if (tweenMotion.Tween == null || !tweenMotion.Tween.isRunning())
             {
-                // Finished moving.
-                // Wait before moving again.
-                _waitTime += Time.deltaTime;
-                if (_waitTime < Delay)
+                if (tweenMotion.delayExpired())
                 {
-                    return;
+                    entity.getComponent<TweenMotion>().Tween = StartTween(entity);
                 }
-
-                // Have waited long enough.
-                _waitTime = 0;
-            }
-
-            if (_tween == null || !_tween.isRunning())
-            {
-                StartTween(entity);
             }
         }
 
-        private void StartTween(Entity entity)
+        private ITween<Vector2> StartTween(Entity entity)
         {
             // If not moving, figure out the next place to move.
-            _destination = _target.position;
-            _direction = Vector2.Normalize(_destination - entity.position);
+            var destination = _target.position;
+            var direction = Vector2.Normalize(destination - entity.position);
             // Add a bit to the destination - want to go past the player.
-            _destination += _direction * 30;
+            destination += direction * 30;
 
-            _tween = entity.tweenPositionTo(_destination);
+            var tween = entity.tweenPositionTo(destination);
             // TODO make duration a function of distance - try keep the speed the same.
-            _tween.setDuration(1.0f);
-            _tween.start();
+            tween.setDuration(1.0f);
+            tween.setRecycleTween(false);
+            tween.start();
+            return tween;
         }
     }
 }

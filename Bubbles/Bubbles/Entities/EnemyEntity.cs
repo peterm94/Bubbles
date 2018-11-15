@@ -22,8 +22,7 @@ namespace Bubbles.Entities
             var sprite = addComponent(new Sprite<AnimateMovementSystem.Animations>(subTextures[0]));
             
             addComponent(new Enemy());
-
-            transform.position = new Vector2(50, 50);
+            addComponent(new TweenMotion(1.5f));
         }
     }
 }
