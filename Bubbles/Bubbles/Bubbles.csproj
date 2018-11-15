@@ -53,6 +53,8 @@
     <Compile Include="Entities\MotionInfo.cs" />
     <Compile Include="Entities\EnemyEntity.cs" />
     <Compile Include="Entities\PlayerEntity.cs" />
+    <Compile Include="Entities\SpriteAction.cs" />
+    <Compile Include="Entities\SpriteCollider.cs" />
     <Compile Include="Entities\SpriteMotion.cs" />
     <Compile Include="Entities\SwordEntity.cs" />
     <Compile Include="Graphics\Colour\Palette.cs" />
