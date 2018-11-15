@@ -12,6 +12,10 @@ namespace Bubbles.Entities
     {
         public PlayerEntity() : base("Player")
         {
+        }
+
+        public override void onAddedToScene()
+        {
             // Load the textures in
             var tex = Core.content.Load<Texture2D>("player");
             var subTextures = Subtexture.subtexturesFromAtlas(tex, 32, tex.Height);
@@ -32,6 +36,9 @@ namespace Bubbles.Entities
             addComponent(new MeleeInput());
             addComponent(new Motion());
             transform.position = new Vector2(256, 144);
+
+            var collider = addComponent(new CircleCollider(8f));
+            collider.setLocalOffset(new Vector2(0, 15f));
         }
     }
 }
