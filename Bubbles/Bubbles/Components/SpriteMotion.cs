@@ -4,21 +4,21 @@ using Nez;
 
 namespace Bubbles.Components
 {
-    public class SpriteMove<TEnum> : FrameTriggerComponent<TEnum, MotionInfo>
+    public class SpriteMotion<TEnum> : FrameTriggerComponent<TEnum, MotionInfo>
         where TEnum : struct, IComparable, IFormattable
     {
         private TransformLock _transformLock;
 
-        protected override void ClearPrevious()
+        protected override void EndTrigger(MotionInfo motion)
         {
             _transformLock.Locked = false;
         }
 
-        protected override void ExecuteTrigger(MotionInfo action)
+        protected override void ExecuteTrigger(MotionInfo motion)
         {
             _transformLock.Locked = true;
-            entity.setLocalPosition(action.Offset);
-            entity.setLocalRotation(action.Angle);
+            entity.setLocalPosition(motion.Offset);
+            entity.setLocalRotation(motion.Angle);
         }
 
         public override void onAddedToEntity()

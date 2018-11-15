@@ -12,6 +12,7 @@ namespace Bubbles.Components
 
         private TEnum _prevAnim;
         private int _prevFrame;
+        private ActionType _prevAction;
 
         private Sprite<TEnum> _triggerSprite;
 
@@ -45,8 +46,9 @@ namespace Bubbles.Components
 
         private void TryTrigger(TEnum anim, int frame)
         {
-            // Not sure if this should happen all the time, or just if the current frame has no action.
-            ClearPrevious();
+            // Trigger the end of the previous action.
+            if (_prevAction != null)
+                EndTrigger(_prevAction);
 
             if (_actionStates.ContainsKey(anim))
             {
@@ -56,8 +58,13 @@ namespace Bubbles.Components
                 {
                     var action = animActions[frame];
                     ExecuteTrigger(action);
+                    _prevAction = action;
+                    return;
                 }
             }
+
+            // Nothing was executed this for this animation frame, set null.
+            _prevAction = default(ActionType);
         }
 
         public FrameTriggerComponent<TEnum, ActionType> AddAction(TEnum key, int frame, ActionType action)
@@ -71,11 +78,18 @@ namespace Bubbles.Components
                 _actionStates[key] = new Dictionary<int, ActionType> {[frame] = action};
             }
 
+            OnActionAdded(action);
             return this;
         }
 
-        protected abstract void ClearPrevious();
-
         protected abstract void ExecuteTrigger(ActionType action);
+
+        protected virtual void OnActionAdded(ActionType action)
+        {
+        }
+
+        protected virtual void EndTrigger(ActionType action)
+        {
+        }
     }
 }
