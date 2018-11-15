@@ -32,7 +32,11 @@ namespace Bubbles.Scenes
 
             addEntity(new CursorEntity());
 
-            addEntity(new EnemyEntity());
+            Entity enemy1 = addEntity(new EnemyEntity());
+            enemy1.transform.position = new Vector2(50, 50);
+
+            Entity enemy2 = addEntity(new EnemyEntity());
+            enemy2.transform.position = new Vector2(300, 200);
 
             addEntityProcessor(new MovementInputSystem());
             addEntityProcessor(new MeleeInputSystem());
@@ -44,7 +48,7 @@ namespace Bubbles.Scenes
 //            addEntityProcessor(new HeadTowardsEntitySystem(new Matcher().all(typeof(Player)), cursor));
             addEntityProcessor(new TestMultiSystem(this));
             addEntityProcessor(new RotateTowardsMouseSystem());
-            addEntityProcessor(new ChargeEntitySystem(new Matcher().all(typeof(Enemy)), player));
+            addEntityProcessor(new ChargeEntitySystem(player));
 
 //            addRenderer(new BlackOutlineRenderer(1000, camera));
         }

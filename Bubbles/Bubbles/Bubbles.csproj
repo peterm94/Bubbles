@@ -49,6 +49,7 @@
     <Compile Include="Components\Motion.cs" />
     <Compile Include="Components\Tags.cs" />
     <Compile Include="Components\TransformLock.cs" />
+    <Compile Include="Components\TweenMotion.cs" />
     <Compile Include="Entities\CursorEntity.cs" />
     <Compile Include="Entities\MotionInfo.cs" />
     <Compile Include="Entities\EnemyEntity.cs" />
