@@ -1,5 +1,6 @@
 using System.Linq;
 using Bubbles.Components;
+using Bubbles.Layers;
 using Bubbles.Systems.Animation;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -42,13 +43,19 @@ namespace Bubbles.Entities
 //            spriteMove.AddAction(AnimateMeleeSystem.Animations.Swing, 0, new MotionInfo(new Vector2(10f, 10f), 10f));
 
             var collider = addComponent(new SpriteCollider<AnimateMeleeSystem.Animations>());
-            collider.AddAction(AnimateMeleeSystem.Animations.Swing, 1,
-                               new PolygonCollider(new[]
-                               {
-                                   new Vector2(-30f, 30f),
-                                   new Vector2(0f, 0f),
-                                   new Vector2(30f, 30f)
-                               }));
+            var swordColldier = new PolygonCollider(new[]
+            {
+                new Vector2(-30f, 30f),
+                new Vector2(0f, 0f),
+                new Vector2(30f, 30f)
+            });
+
+            Flags.setFlagExclusive(ref swordColldier.collidesWithLayers, PhysicsLayers.ENEMY);
+            Flags.setFlagExclusive(ref swordColldier.physicsLayer, PhysicsLayers.PLAYER_WEAPON);
+            swordColldier.isTrigger = true;
+            collider.AddAction(AnimateMeleeSystem.Animations.Swing, 1, swordColldier);
+
+            addComponent(new EnemyDamager());
         }
     }
 }

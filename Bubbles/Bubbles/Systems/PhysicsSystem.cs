@@ -17,10 +17,11 @@ namespace Bubbles.Systems
         public override void process(Entity entity)
         {
             var motion = entity.getComponent<Motion>();
+            var mover = entity.getOrCreateComponent<Mover>();
 
             if (MathUtil.FloatEquals(motion.Speed, 0)) return;
 
-            entity.position += motion.Direction * motion.Speed * Time.deltaTime;
+            mover.move(motion.Direction * motion.Speed * Time.deltaTime, out var result);
 
             motion.Speed = Math.Max(motion.Speed - motion.Friction * Time.deltaTime, 0);
         }

@@ -1,6 +1,6 @@
-using System.Linq;
 using Bubbles.Components;
 using Bubbles.Graphics.Colour;
+using Bubbles.Layers;
 using Bubbles.Systems;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -23,6 +23,10 @@ namespace Bubbles.Entities
             
             addComponent(new Enemy());
             addComponent(new TweenMotion(1.5f));
+
+            var collider = addComponent(new CircleCollider(8f));
+            collider.setLocalOffset(new Vector2(0, 15f));
+            Flags.setFlagExclusive(ref collider.physicsLayer, PhysicsLayers.ENEMY);
         }
     }
 }
