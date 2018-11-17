@@ -11,7 +11,7 @@ namespace Bubbles.Systems
     {
         private readonly Entity _target;
 
-        public ChargeEntitySystem(Entity target) : base(new Matcher().all(typeof(Enemy)))
+        public ChargeEntitySystem(Entity target) : base(new Matcher().all(typeof(Enemy), typeof(TweenMotion)))
         {
             _target = target;
         }

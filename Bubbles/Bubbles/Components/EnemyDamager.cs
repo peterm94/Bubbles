@@ -7,7 +7,7 @@ namespace Bubbles.Components
     {
         public void onTriggerEnter(Collider other, Collider local)
         {
-            Console.WriteLine("HIT");
+            Console.WriteLine("HIT " + other.entity.name);
         }
 
         public void onTriggerExit(Collider other, Collider local)

@@ -22,11 +22,12 @@ namespace Bubbles.Entities
             var sprite = addComponent(new Sprite<AnimateMovementSystem.Animations>(subTextures[0]));
             
             addComponent(new Enemy());
-            addComponent(new TweenMotion(1.5f));
+//            addComponent(new TweenMotion(1.5f));
 
             var collider = addComponent(new CircleCollider(8f));
             collider.setLocalOffset(new Vector2(0, 15f));
-            Flags.setFlagExclusive(ref collider.physicsLayer, PhysicsLayers.ENEMY);
+//            Flags.setFlagExclusive(ref collider.physicsLayer, PhysicsLayers.ENEMY);
+//            Flags.setFlagExclusive(ref collider.collidesWithLayers, PhysicsLayers.PLAYER_WEAPON);
         }
     }
 }
