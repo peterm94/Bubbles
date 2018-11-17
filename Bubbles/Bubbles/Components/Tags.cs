@@ -25,4 +25,14 @@ namespace Bubbles.Components
     public class Weapon : Component
     {
     }
+
+    public class Attacked : Component
+    {
+        public Collider Hitter { get; }
+
+        public Attacked(Collider hitter)
+        {
+            Hitter = hitter;
+        }
+    }
 }
