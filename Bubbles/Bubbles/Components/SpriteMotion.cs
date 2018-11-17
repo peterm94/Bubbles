@@ -9,12 +9,12 @@ namespace Bubbles.Components
     {
         private TransformLock _transformLock;
 
-        protected override void EndTrigger(MotionInfo motion)
+        protected override void FrameEndTrigger(MotionInfo motion)
         {
             _transformLock.Locked = false;
         }
 
-        protected override void ExecuteTrigger(MotionInfo motion)
+        protected override void FrameStartTrigger(MotionInfo motion)
         {
             _transformLock.Locked = true;
             entity.setLocalPosition(motion.Offset);

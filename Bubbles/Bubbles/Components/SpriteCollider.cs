@@ -10,9 +10,9 @@ namespace Bubbles.Components
     public class SpriteCollider<TEnum> : FrameTriggerComponent<TEnum, Collider>
         where TEnum : struct, IComparable, IFormattable
     {
-        private readonly Dictionary<Collider, List<Attacked>> _attacks = new Dictionary<Collider, List<Attacked>>();
+        private readonly Dictionary<Entity, Attacked> _hits = new Dictionary<Entity, Attacked>();
 
-        protected override void ExecuteTrigger(Collider collider)
+        protected override void FrameStartTrigger(Collider collider)
         {
             // Do a broad collision check.
             var boxCast = Physics.boxcastBroadphaseExcludingSelf(collider, 0, 0, collider.collidesWithLayers);
@@ -27,15 +27,18 @@ namespace Bubbles.Components
             }
         }
 
-        protected override void EndTrigger(Collider collider)
+        protected override void AnimationEndTrigger(Collider collider)
         {
-            if (_attacks.ContainsKey(collider))
-            {
-                Console.WriteLine("CLEARING");
+            Console.WriteLine("CLEARING");
 
-                _attacks[collider].ForEach(x => x.removeComponent());
-                _attacks.Remove(collider);
+            // Remove each hit component from the enemies
+            // TODO i don't think we even need to do this any more?? the other entity can clear it when it's processed?
+            foreach (var attack in _hits.Values)
+            {
+                attack.removeComponent();
             }
+
+            _hits.Clear();
         }
 
         protected override void OnActionAdded(Collider collider)
@@ -46,18 +49,13 @@ namespace Bubbles.Components
 
         private void OnCollisionEnter(Collider other, Collider local)
         {
+            // We don't want to hit the same guy twice in one animation.
+            if (_hits.ContainsKey(other.entity)) return;
+
             Console.WriteLine("HIT " + other.entity.name);
 
             var attacked = other.entity.addComponent(new Attacked(local));
-
-            if (_attacks.ContainsKey(local))
-            {
-                _attacks[local].Add(attacked);
-            }
-            else
-            {
-                _attacks[local] = new List<Attacked> {attacked};
-            }
+            _hits[local.entity] = attacked;
         }
     }
 }

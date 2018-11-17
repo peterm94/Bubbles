@@ -12,7 +12,8 @@ namespace Bubbles.Components
 
         private TEnum _prevAnim;
         private int _prevFrame;
-        private ActionType _prevAction;
+        private ActionType _prevFrameAction;
+        private ActionType _prevAnimAction;
 
         private Sprite<TEnum> _triggerSprite;
 
@@ -25,13 +26,34 @@ namespace Bubbles.Components
         {
             if (!_triggerSprite.currentAnimation.Equals(_prevAnim))
             {
-                // Animation change. Get the required frame and execute the action.
-                TryTrigger(_triggerSprite.currentAnimation, _triggerSprite.currentFrame);
+                // Animation change.
+                // Call the end of animation trigger.
+                if (_prevAnimAction != null)
+                {
+                    AnimationEndTrigger(_prevAnimAction);
+                }
+
+                if (_prevFrameAction != null)
+                {
+                    FrameEndTrigger(_prevFrameAction);
+                }
+
+                _prevAnimAction = default(ActionType);
+                _prevFrameAction = default(ActionType);
+
+                // Get the required frame and execute the action.
+                TryTrigger(_triggerSprite.currentAnimation, _triggerSprite.currentFrame, true);
             }
             else if (!_prevFrame.Equals(_triggerSprite.currentFrame))
             {
-                // Frame change. Get the next frame and execute.
-                TryTrigger(_triggerSprite.currentAnimation, _triggerSprite.currentFrame);
+                // Frame change. Call the frame end trigger for the previous frame.
+                if (_prevFrameAction != null)
+                    FrameEndTrigger(_prevFrameAction);
+
+                _prevFrameAction = default(ActionType);
+
+                // Get the next frame and execute.
+                TryTrigger(_triggerSprite.currentAnimation, _triggerSprite.currentFrame, false);
             }
 
             _prevAnim = _triggerSprite.currentAnimation;
@@ -44,12 +66,8 @@ namespace Bubbles.Components
             _triggerSprite = entity.getComponent<Sprite<TEnum>>();
         }
 
-        private void TryTrigger(TEnum anim, int frame)
+        private void TryTrigger(TEnum anim, int frame, bool animStart)
         {
-            // Trigger the end of the previous action.
-            if (_prevAction != null)
-                EndTrigger(_prevAction);
-
             if (_actionStates.ContainsKey(anim))
             {
                 var animActions = _actionStates[anim];
@@ -57,14 +75,17 @@ namespace Bubbles.Components
                 if (animActions.ContainsKey(frame))
                 {
                     var action = animActions[frame];
-                    ExecuteTrigger(action);
-                    _prevAction = action;
+
+                    // If it is the start of the animation as well as the start of the frame, trigger this method too.
+                    if (animStart)
+                        AnimationStartTrigger(action);
+
+                    FrameStartTrigger(action);
+                    _prevAnimAction = action;
+                    _prevFrameAction = action;
                     return;
                 }
             }
-
-            // Nothing was executed this for this animation frame, set null.
-            _prevAction = default(ActionType);
         }
 
         public FrameTriggerComponent<TEnum, ActionType> AddAction(TEnum key, int frame, ActionType action)
@@ -82,13 +103,23 @@ namespace Bubbles.Components
             return this;
         }
 
-        protected abstract void ExecuteTrigger(ActionType action);
+        protected virtual void FrameStartTrigger(ActionType action)
+        {
+        }
 
         protected virtual void OnActionAdded(ActionType action)
         {
         }
 
-        protected virtual void EndTrigger(ActionType action)
+        protected virtual void AnimationStartTrigger(ActionType action)
+        {
+        }
+
+        protected virtual void AnimationEndTrigger(ActionType action)
+        {
+        }
+
+        protected virtual void FrameEndTrigger(ActionType action)
         {
         }
     }
