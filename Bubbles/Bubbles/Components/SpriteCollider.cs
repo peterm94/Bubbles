@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Microsoft.Xna.Framework;
 using Nez;
+using Nez.Console;
 using Nez.IEnumerableExtensions;
 
 namespace Bubbles.Components
@@ -27,7 +28,7 @@ namespace Bubbles.Components
             }
         }
 
-        protected override void AnimationEndTrigger(Collider collider)
+        protected override void AnimationEndTrigger(TEnum prevAnim)
         {
             Console.WriteLine("CLEARING");
 
@@ -55,7 +56,7 @@ namespace Bubbles.Components
             Console.WriteLine("HIT " + other.entity.name);
 
             var attacked = other.entity.addComponent(new Attacked(local));
-            _hits[local.entity] = attacked;
+            _hits[other.entity] = attacked;
         }
     }
 }

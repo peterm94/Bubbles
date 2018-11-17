@@ -28,19 +28,12 @@ namespace Bubbles.Entities
 
             sprite.addAnimation(AnimateMeleeSystem.Animations.Swing, swingAnim);
             sprite.addAnimation(AnimateMeleeSystem.Animations.Idle, idleAnim);
-//            sprite.setOrigin(new Vector2(0, 0));
-//            sprite.setLocalOffset(new Vector2(0, 0));
 
             addComponent(new PlayerControlled());
             addComponent(new Weapon());
             addComponent(new MeleeInput());
             addComponent(new RotateTowardsMouse());
             addComponent(new TransformLock());
-//            addComponent(new BoxCollider(0, 0, 56, 36));
-//            addComponent(new BoxCollider());
-
-//            var spriteMove = addComponent(new SpriteMove<AnimateMeleeSystem.Animations>());
-//            spriteMove.AddAction(AnimateMeleeSystem.Animations.Swing, 0, new MotionInfo(new Vector2(10f, 10f), 10f));
 
             var collider = addComponent(new SpriteCollider<AnimateMeleeSystem.Animations>());
             var swordCollider = new PolygonCollider(new[]
@@ -58,8 +51,6 @@ namespace Bubbles.Entities
             Flags.setFlagExclusive(ref swordCollider.physicsLayer, PhysicsLayers.PLAYER_WEAPON);
             swordCollider.isTrigger = true;
             collider.AddAction(AnimateMeleeSystem.Animations.Swing, 0, swordCollider);
-
-            addComponent(new EnemyDamager());
         }
     }
 }

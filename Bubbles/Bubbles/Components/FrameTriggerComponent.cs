@@ -12,8 +12,8 @@ namespace Bubbles.Components
 
         private TEnum _prevAnim;
         private int _prevFrame;
+
         private ActionType _prevFrameAction;
-        private ActionType _prevAnimAction;
 
         private Sprite<TEnum> _triggerSprite;
 
@@ -28,32 +28,30 @@ namespace Bubbles.Components
             {
                 // Animation change.
                 // Call the end of animation trigger.
-                if (_prevAnimAction != null)
-                {
-                    AnimationEndTrigger(_prevAnimAction);
-                }
+                AnimationEndTrigger(_prevAnim);
 
                 if (_prevFrameAction != null)
                 {
                     FrameEndTrigger(_prevFrameAction);
+                    _prevFrameAction = default(ActionType);
                 }
 
-                _prevAnimAction = default(ActionType);
-                _prevFrameAction = default(ActionType);
+                AnimationStartTrigger(_triggerSprite.currentAnimation);
 
                 // Get the required frame and execute the action.
-                TryTrigger(_triggerSprite.currentAnimation, _triggerSprite.currentFrame, true);
+                TryTrigger(_triggerSprite.currentAnimation, _triggerSprite.currentFrame);
             }
             else if (!_prevFrame.Equals(_triggerSprite.currentFrame))
             {
                 // Frame change. Call the frame end trigger for the previous frame.
                 if (_prevFrameAction != null)
+                {
                     FrameEndTrigger(_prevFrameAction);
-
-                _prevFrameAction = default(ActionType);
+                    _prevFrameAction = default(ActionType);
+                }
 
                 // Get the next frame and execute.
-                TryTrigger(_triggerSprite.currentAnimation, _triggerSprite.currentFrame, false);
+                TryTrigger(_triggerSprite.currentAnimation, _triggerSprite.currentFrame);
             }
 
             _prevAnim = _triggerSprite.currentAnimation;
@@ -66,7 +64,7 @@ namespace Bubbles.Components
             _triggerSprite = entity.getComponent<Sprite<TEnum>>();
         }
 
-        private void TryTrigger(TEnum anim, int frame, bool animStart)
+        private void TryTrigger(TEnum anim, int frame)
         {
             if (_actionStates.ContainsKey(anim))
             {
@@ -75,13 +73,6 @@ namespace Bubbles.Components
                 if (animActions.ContainsKey(frame))
                 {
                     var action = animActions[frame];
-
-                    // If it is the start of the animation as well as the start of the frame, trigger this method too.
-                    if (animStart)
-                    {
-                        AnimationStartTrigger(action);
-                        _prevAnimAction = action;
-                    }
 
                     FrameStartTrigger(action);
                     _prevFrameAction = action;
@@ -112,11 +103,11 @@ namespace Bubbles.Components
         {
         }
 
-        protected virtual void AnimationStartTrigger(ActionType action)
+        protected virtual void AnimationStartTrigger(TEnum anim)
         {
         }
 
-        protected virtual void AnimationEndTrigger(ActionType action)
+        protected virtual void AnimationEndTrigger(TEnum prevAnim)
         {
         }
 
