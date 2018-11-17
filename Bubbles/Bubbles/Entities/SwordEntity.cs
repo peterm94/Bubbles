@@ -43,7 +43,7 @@ namespace Bubbles.Entities
 //            spriteMove.AddAction(AnimateMeleeSystem.Animations.Swing, 0, new MotionInfo(new Vector2(10f, 10f), 10f));
 
             var collider = addComponent(new SpriteCollider<AnimateMeleeSystem.Animations>());
-            var swordColldier = new PolygonCollider(new[]
+            var swordCollider = new PolygonCollider(new[]
             {
                 new Vector2(-32f, 2f),
                 new Vector2(-23f, 22f),
@@ -56,8 +56,8 @@ namespace Bubbles.Entities
 
 //            Flags.setFlagExclusive(ref swordColldier.collidesWithLayers, PhysicsLayers.ENEMY);
 //            Flags.setFlagExclusive(ref swordColldier.physicsLayer, PhysicsLayers.PLAYER_WEAPON);
-            swordColldier.isTrigger = true;
-            collider.AddAction(AnimateMeleeSystem.Animations.Swing, 0, swordColldier);
+            swordCollider.isTrigger = true;
+            collider.AddAction(AnimateMeleeSystem.Animations.Swing, 0, swordCollider);
 
             addComponent(new EnemyDamager());
         }

@@ -24,7 +24,7 @@ namespace Bubbles.Scenes
             var player = new PlayerEntity();
             addEntity(player);
 
-            var sword = new SwordEntity();
+            var sword = new HammerEntity();
             sword.setPosition(new Vector2(0, 16));
             sword.setParent(player);
 //            sword.addComponent(new RotateTowardsMouse());
