@@ -34,6 +34,8 @@ namespace Bubbles.Scenes
             Entity enemy2 = addEntity(new EnemyEntity());
             enemy2.transform.position = new Vector2(300, 200);
 
+            camera.addComponent(new FollowCamera(player, FollowCamera.CameraStyle.CameraWindow));
+
             addEntityProcessor(new MovementInputSystem());
             addEntityProcessor(new MeleeInputSystem());
             addEntityProcessor(new MovementSystem());

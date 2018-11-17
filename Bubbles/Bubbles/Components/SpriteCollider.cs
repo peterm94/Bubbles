@@ -17,7 +17,7 @@ namespace Bubbles.Components
             // For anything close, check for collisions.
             foreach (var other in boxCast)
             {
-                if (collider.collidesWith(other, out var result))
+                if (collider.overlaps(other))
                 {
                     OnCollisionEnter(other, collider);
                 }
