@@ -40,8 +40,8 @@ namespace Bubbles.Entities
 
             var collider = addComponent(new CircleCollider(8f));
             collider.setLocalOffset(new Vector2(0, 15f));
-//            Flags.setFlagExclusive(ref collider.physicsLayer, PhysicsLayers.PLAYER);
-//            Flags.setFlagExclusive(ref collider.collidesWithLayers, PhysicsLayers.NONE);
+            Flags.setFlagExclusive(ref collider.physicsLayer, PhysicsLayers.PLAYER);
+            Flags.setFlagExclusive(ref collider.collidesWithLayers, PhysicsLayers.NONE);
         }
     }
 }

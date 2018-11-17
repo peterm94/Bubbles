@@ -54,8 +54,8 @@ namespace Bubbles.Entities
                 new Vector2(-14f, 10f)
             });
 
-//            Flags.setFlagExclusive(ref swordColldier.collidesWithLayers, PhysicsLayers.ENEMY);
-//            Flags.setFlagExclusive(ref swordColldier.physicsLayer, PhysicsLayers.PLAYER_WEAPON);
+            Flags.setFlagExclusive(ref swordColldier.collidesWithLayers, PhysicsLayers.ENEMY);
+            Flags.setFlagExclusive(ref swordColldier.physicsLayer, PhysicsLayers.PLAYER_WEAPON);
             swordColldier.isTrigger = true;
             collider.AddAction(AnimateMeleeSystem.Animations.Swing, 0, swordColldier);
 
