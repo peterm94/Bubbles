@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using Microsoft.Xna.Framework;
 using Nez;
 using Nez.IEnumerableExtensions;
@@ -9,21 +10,25 @@ namespace Bubbles.Components
     public class SpriteCollider<TEnum> : FrameTriggerComponent<TEnum, Collider>
         where TEnum : struct, IComparable, IFormattable
     {
-        private Dictionary<Collider, List<Attacked>> _attacks = new Dictionary<Collider, List<Attacked>>();
+        private readonly Dictionary<Collider, List<Attacked>> _attacks = new Dictionary<Collider, List<Attacked>>();
 
         protected override void ExecuteTrigger(Collider collider)
         {
-            // Enable the collider
-            if (collider.collidesWithAny(out var res))
+            // Do a broad collision check.
+            var boxCast = Physics.boxcastBroadphaseExcludingSelf(collider, 0, 0, collider.collidesWithLayers);
+
+            // For anything close, check for collisions.
+            foreach (var other in boxCast)
             {
-                onTriggerEnter(res.collider, collider);
+                if (collider.collidesWith(other, out var result))
+                {
+                    OnCollisionEnter(other, collider);
+                }
             }
-//            collider.enabled = true;
         }
 
         protected override void EndTrigger(Collider collider)
         {
-//            collider.enabled = false;
             if (_attacks.ContainsKey(collider))
             {
                 Console.WriteLine("CLEARING");
@@ -35,24 +40,23 @@ namespace Bubbles.Components
 
         protected override void OnActionAdded(Collider collider)
         {
-            // Add the collider to the entity but disable it.
+            // Add the collider to the entity.
             entity.addComponent(collider);
-//            collider.setEnabled(false);
         }
 
-        public void onTriggerEnter(Collider other, Collider local)
+        private void OnCollisionEnter(Collider other, Collider local)
         {
-            Console.WriteLine("HIT");
+            Console.WriteLine("HIT " + other.entity.name);
 
-            var attk = other.entity.addComponent(new Attacked(local));
+            var attacked = other.entity.addComponent(new Attacked(local));
 
             if (_attacks.ContainsKey(local))
             {
-                _attacks[local].Add(attk);
+                _attacks[local].Add(attacked);
             }
             else
             {
-                _attacks[local] = new List<Attacked> {attk};
+                _attacks[local] = new List<Attacked> {attacked};
             }
         }
     }
