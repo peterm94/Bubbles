@@ -78,12 +78,13 @@ namespace Bubbles.Components
 
                     // If it is the start of the animation as well as the start of the frame, trigger this method too.
                     if (animStart)
+                    {
                         AnimationStartTrigger(action);
+                        _prevAnimAction = action;
+                    }
 
                     FrameStartTrigger(action);
-                    _prevAnimAction = action;
                     _prevFrameAction = action;
-                    return;
                 }
             }
         }
