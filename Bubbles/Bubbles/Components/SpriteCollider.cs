@@ -11,6 +11,8 @@ namespace Bubbles.Components
 
         protected override void FrameStartTrigger(Collider collider)
         {
+            collider.enabled = true;
+
             // Do a broad collision check.
             var boxCast = Physics.boxcastBroadphaseExcludingSelf(collider, 0, 0, collider.collidesWithLayers);
 
@@ -22,6 +24,11 @@ namespace Bubbles.Components
                     OnCollisionEnter(other, collider);
                 }
             }
+        }
+
+        protected override void FrameEndTrigger(Collider collider)
+        {
+            collider.enabled = false;
         }
 
         protected override void AnimationEndTrigger(TEnum prevAnim)
