@@ -3,7 +3,7 @@ using Nez;
 
 namespace Bubbles.Components
 {
-    public class EnemyDamager: Component, ITriggerListener
+    public class EnemyDamager : Component, ITriggerListener
     {
         public void onTriggerEnter(Collider other, Collider local)
         {

@@ -28,11 +28,11 @@ namespace Bubbles.Components
 
     public class Attacked : Component
     {
-        public Collider Hitter { get; }
-
         public Attacked(Collider hitter)
         {
             Hitter = hitter;
         }
+
+        public Collider Hitter { get; }
     }
 }

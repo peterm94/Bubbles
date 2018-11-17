@@ -1,10 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using Microsoft.Xna.Framework;
 using Nez;
-using Nez.Console;
-using Nez.IEnumerableExtensions;
 
 namespace Bubbles.Components
 {

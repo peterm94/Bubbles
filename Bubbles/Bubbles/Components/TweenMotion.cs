@@ -6,8 +6,6 @@ namespace Bubbles.Components
 {
     public class TweenMotion : Component
     {
-        public ITween<Vector2> Tween { get; set; }
-
         private readonly float _delayTimeSecs;
         private float _currentDelay;
 
@@ -17,10 +15,12 @@ namespace Bubbles.Components
             _delayTimeSecs = delay;
         }
 
+        public ITween<Vector2> Tween { get; set; }
+
         public bool delayExpired()
         {
             _currentDelay += Time.deltaTime;
-            if (_currentDelay  > _delayTimeSecs)
+            if (_currentDelay > _delayTimeSecs)
             {
                 _currentDelay = 0f;
                 return true;

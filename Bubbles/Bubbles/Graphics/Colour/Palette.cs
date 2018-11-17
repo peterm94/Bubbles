@@ -1,18 +1,54 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Xml;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Nez;
-using Nez.Textures;
 
 namespace Bubbles.Graphics.Colour
 {
     public static class Palette
     {
+        // Preset colour progressions.
+
         /// <summary>
-        /// All colours available in the EDG32 colour palette.
+        ///     Recolour the input Texture2D given input and output colour mappings.
+        ///     Each pixel matching an input colour will be mapped to that index from the output colour array.
+        /// </summary>
+        /// <param name="texture">The texture to recolour.</param>
+        /// <param name="input">The input colour progression.</param>
+        /// <param name="output">The output colour progression.</param>
+        /// <param name="copy">Whether to modify the given texture or create a copy.</param>
+        /// <returns>The recoloured texture.</returns>
+        public static Texture2D RecolourTexture(Texture2D texture, Color[] input, Color[] output,
+                                                bool copy = true)
+        {
+            var data = new Color[texture.Width * texture.Height];
+            texture.GetData(data);
+
+            for (var c = 0; c < data.Length; c++)
+            {
+                if (data[c].A == 0) continue;
+
+                var index = Array.IndexOf(input, data[c]);
+
+                if (index >= 0)
+                {
+                    data[c] = output[index];
+                }
+            }
+
+            if (copy)
+            {
+                var newTex = new Texture2D(Core.graphicsDevice, texture.Width, texture.Height);
+                newTex.SetData(data);
+                return newTex;
+            }
+
+            texture.SetData(data);
+            return texture;
+        }
+
+        /// <summary>
+        ///     All colours available in the EDG32 colour palette.
         /// </summary>
         public static class Colours
         {
@@ -51,7 +87,7 @@ namespace Bubbles.Graphics.Colour
         }
 
         /// <summary>
-        /// Colour progressions. Used to recolour sprites.
+        ///     Colour progressions. Used to recolour sprites.
         /// </summary>
         public static class Progressions
         {
@@ -59,47 +95,6 @@ namespace Bubbles.Graphics.Colour
             public static Color[] Blue = {Colours.Grey_5, Colours.Blue_3, Colours.Blue_2, Colours.Blue_1};
             public static Color[] Green = {Colours.Grey_5, Colours.Green_3, Colours.Green_2, Colours.Green_1};
             public static Color[] Fire = {Colours.Brown_5, Colours.Red_2, Colours.Orange_2, Colours.Yellow};
-        }
-        
-        // Preset colour progressions.
-
-        /// <summary>
-        /// Recolour the input Texture2D given input and output colour mappings.
-        ///
-        /// Each pixel matching an input colour will be mapped to that index from the output colour array.
-        /// </summary>
-        /// <param name="texture">The texture to recolour.</param>
-        /// <param name="input">The input colour progression.</param>
-        /// <param name="output">The output colour progression.</param>
-        /// <param name="copy">Whether to modify the given texture or create a copy.</param>
-        /// <returns>The recoloured texture.</returns>
-        public static Texture2D RecolourTexture(Texture2D texture, Color[] input, Color[] output,
-                                                bool copy = true)
-        {
-            var data = new Color[texture.Width * texture.Height];
-            texture.GetData(data);
-
-            for (var c = 0; c < data.Length; c++)
-            {
-                if (data[c].A == 0) continue;
-
-                var index = Array.IndexOf(input, data[c]);
-
-                if (index >= 0)
-                {
-                    data[c] = output[index];
-                }
-            }
-
-            if (copy)
-            {
-                var newTex = new Texture2D(Core.graphicsDevice, texture.Width, texture.Height);
-                newTex.SetData(data);
-                return newTex;
-            }
-
-            texture.SetData(data);
-            return texture;
         }
     }
 }

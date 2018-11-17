@@ -1,6 +1,4 @@
-using Bubbles.Components;
 using Bubbles.Entities;
-using Bubbles.Graphics.Renderers;
 using Bubbles.Systems;
 using Bubbles.Systems.Animation;
 using Bubbles.Systems.Controls;
