@@ -35,7 +35,7 @@ namespace Bubbles.Scenes
             Entity enemy2 = addEntity(new EnemyEntity("dude2"));
             enemy2.transform.position = new Vector2(300, 200);
 
-            camera.addComponent(new FollowCamera(player, FollowCamera.CameraStyle.CameraWindow));
+//            camera.addComponent(new FollowCamera(player, FollowCamera.CameraStyle.CameraWindow));
 
             addEntityProcessor(new MovementInputSystem());
             addEntityProcessor(new MeleeInputSystem());
@@ -48,7 +48,6 @@ namespace Bubbles.Scenes
 //            addEntityProcessor(new HeadTowardsEntitySystem(new Matcher().all(typeof(Player)), cursor));
             addEntityProcessor(new RotateTowardsMouseSystem());
             addEntityProcessor(new ChargeEntitySystem(player));
-            addEntityProcessor(new SleepSystem());
 
 //            addRenderer(new BlackOutlineRenderer(1000, camera));
         }
