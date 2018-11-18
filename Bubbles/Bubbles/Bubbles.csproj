@@ -44,16 +44,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Components\EnemyDamager.cs" />
+    <Compile Include="Components\Combat\Attacked.cs" />
+    <Compile Include="Components\Combat\Health.cs" />
     <Compile Include="Components\FrameTriggerComponent.cs" />
     <Compile Include="Components\MeleeInput.cs" />
     <Compile Include="Components\MovementInput.cs" />
     <Compile Include="Components\Motion.cs" />
     <Compile Include="Components\SpriteCollider.cs" />
-    <Compile Include="Components\SpriteMotion.cs" />
     <Compile Include="Components\Tags.cs" />
     <Compile Include="Components\TransformLock.cs" />
     <Compile Include="Components\TweenMotion.cs" />
+    <Compile Include="Components\Unused\EnemyDamager.cs" />
+    <Compile Include="Components\Unused\SpriteMotion.cs" />
+    <Compile Include="Components\Visuals\Sleep.cs" />
     <Compile Include="Entities\AnimatedEntity.cs" />
     <Compile Include="Entities\HammerEntity.cs" />
     <Compile Include="Entities\CursorEntity.cs" />
@@ -72,6 +75,9 @@
     <Compile Include="Systems\Animation\AnimateMovementSystem.cs" />
     <Compile Include="Systems\Animation\AnimateMeleeSystem.cs" />
     <Compile Include="Systems\ChargeEntitySystem.cs" />
+    <Compile Include="Systems\Combat\BringOutYourDead.cs" />
+    <Compile Include="Systems\Combat\DealDamageSystem.cs" />
+    <Compile Include="Systems\Combat\DestroyEntitySystem.cs" />
     <Compile Include="Systems\HeadTowardsEntitySystem.cs" />
     <Compile Include="Systems\Controls\MeleeInputSystem.cs" />
     <Compile Include="Systems\Controls\MovementInputSystem.cs" />
@@ -80,6 +86,7 @@
     <Compile Include="Systems\Position\TrackMouseSystem.cs" />
     <Compile Include="Systems\RotateTowardsMouseSystem.cs" />
     <Compile Include="Systems\TestMultiSystem.cs" />
+    <Compile Include="Systems\Visuals\FlashWhiteSystem.cs" />
     <Compile Include="Util\CustomDebugActions.cs" />
     <Compile Include="Util\MultiEntityProcessingSystem.cs" />
     <Compile Include="Util\MathUtil.cs" />
@@ -93,6 +100,9 @@
       <Project>{60b7197d-d0d5-405c-90a2-a56903e9b039}</Project>
       <Name>Nez</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Components\Sprites" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MonoGame.Framework.DesktopGL.3.7.0.1708\build\MonoGame.Framework.DesktopGL.targets" Condition="Exists('..\packages\MonoGame.Framework.DesktopGL.3.7.0.1708\build\MonoGame.Framework.DesktopGL.targets')" />

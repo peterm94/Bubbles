@@ -3,8 +3,10 @@ using Bubbles.Components;
 using Bubbles.Entities;
 using Bubbles.Systems;
 using Bubbles.Systems.Animation;
+using Bubbles.Systems.Combat;
 using Bubbles.Systems.Controls;
 using Bubbles.Systems.Position;
+using Bubbles.Systems.Visuals;
 using Microsoft.Xna.Framework;
 using Nez;
 
@@ -59,6 +61,10 @@ namespace Bubbles.Scenes
 //            addEntityProcessor(new HeadTowardsEntitySystem(new Matcher().all(typeof(Player)), cursor));
             addEntityProcessor(new RotateTowardsMouseSystem());
             addEntityProcessor(new ChargeEntitySystem(player));
+            addEntityProcessor(new DealDamageSystem());
+            addEntityProcessor(new BringOutYourDead());
+            addEntityProcessor(new DestroyEntitySystem());
+            addEntityProcessor(new FlashWhiteSystem());
 
 //            addRenderer(new BlackOutlineRenderer(1000, camera));
         }

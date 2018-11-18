@@ -42,14 +42,6 @@ namespace Bubbles.Components
         protected override void AnimationEndTrigger(TEnum prevAnim)
         {
             Console.WriteLine("CLEARING");
-
-            // Remove each hit component from the enemies
-            // TODO i don't think we even need to do this any more?? the other entity can clear it when it's processed?
-            foreach (var attack in _hits.Values)
-            {
-                attack.removeComponent();
-            }
-
             _hits.Clear();
         }
 

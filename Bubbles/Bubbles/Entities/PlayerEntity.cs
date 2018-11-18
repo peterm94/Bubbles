@@ -1,4 +1,5 @@
 using Bubbles.Components;
+using Bubbles.Components.Combat;
 using Bubbles.Layers;
 using Bubbles.Systems;
 using Microsoft.Xna.Framework;
@@ -23,6 +24,7 @@ namespace Bubbles.Entities
             AddAnimation(new Animation(SubTextures[0], AnimateMovementSystem.Animations.Idle));
 
             addComponent(new Player());
+            addComponent(new Health());
             addComponent(new PlayerControlled());
             addComponent(new MovementInput());
             addComponent(new MeleeInput());

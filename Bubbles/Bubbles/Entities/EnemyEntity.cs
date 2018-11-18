@@ -1,4 +1,5 @@
 using Bubbles.Components;
+using Bubbles.Components.Combat;
 using Bubbles.Graphics.Colour;
 using Bubbles.Layers;
 using Bubbles.Systems;
@@ -19,6 +20,7 @@ namespace Bubbles.Entities
             Initialise(recolour, 32);
                         
             addComponent(new Enemy());
+            addComponent(new Health());
 //            addComponent(new TweenMotion(1.5f));
 
             var collider = addComponent(new CircleCollider(8f));
