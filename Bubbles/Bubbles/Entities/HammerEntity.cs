@@ -14,7 +14,7 @@ using Nez.Textures;
 
 namespace Bubbles.Entities
 {
-    public class AnimatedHammerEntity : AnimatedEntity<AnimateComboSystem.Animations>
+    public class AnimatedHammerEntity : AnimatedEntity<AnimateHammerSystem.Animations>
     {
         public AnimatedHammerEntity(string name) : base(name)
         {
@@ -25,8 +25,15 @@ namespace Bubbles.Entities
             swing.Add(SubTextures[2]);
             swing.Add(SubTextures[1]);
             
-            AddAnimation(new Animation(swing, AnimateComboSystem.Animations.Swing, loop: false));
-            AddAnimation(new Animation(SubTextures[0], AnimateComboSystem.Animations.Idle));
+            AddAnimation(new Animation(SubTextures.GetRange(1, 6), AnimateHammerSystem.Animations.WarmUp));
+            
+            var reversed = SubTextures.GetRange(1, 4);
+            reversed.Reverse();
+            AddAnimation(new Animation(reversed, AnimateHammerSystem.Animations.CoolDown));
+            
+            AddAnimation(new Animation(SubTextures.GetRange(7, 6), AnimateHammerSystem.Animations.Swing));
+            
+            AddAnimation(new Animation(SubTextures[0], AnimateHammerSystem.Animations.Idle));
         }
 
         public override void onAddedToScene()
@@ -37,7 +44,7 @@ namespace Bubbles.Entities
             addComponent(new RotateTowardsMouse());
             addComponent(new TransformLock());
 
-            var collider = addComponent(new SpriteCollider<AnimateComboSystem.Animations>());
+            var collider = addComponent(new SpriteCollider<AnimateHammerSystem.Animations>());
 
             var hammer1 = new PolygonCollider(new[]
             {
@@ -70,8 +77,8 @@ namespace Bubbles.Entities
             Flags.setFlagExclusive(ref hammer2.collidesWithLayers, PhysicsLayers.ENEMY);
             Flags.setFlagExclusive(ref hammer2.physicsLayer, PhysicsLayers.PLAYER_WEAPON);
 
-            collider.AddAction(AnimateComboSystem.Animations.Swing, 8, hammer1);
-            collider.AddAction(AnimateComboSystem.Animations.Swing, 9, hammer2);
+            collider.AddAction(AnimateHammerSystem.Animations.Swing, 8, hammer1);
+            collider.AddAction(AnimateHammerSystem.Animations.Swing, 9, hammer2);
         }
     }
 }

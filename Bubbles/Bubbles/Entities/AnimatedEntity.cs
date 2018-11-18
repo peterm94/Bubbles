@@ -28,6 +28,10 @@ namespace Bubbles.Entities
             Initialise(Core.content.Load<Texture2D>(spritesheet), width, height, staticFrame);
         }
 
+        /// <summary>
+        /// Initialise the AnimatedEntity.
+        /// This MUST be called if you are not assigning the SubTextures and Sprite manually. 
+        /// </summary>
         protected void Initialise(Texture2D spritesheet, int width, int height = -1, int staticFrame = 0)
         {
             // C# is stupid.
@@ -65,7 +69,7 @@ namespace Bubbles.Entities
             /// <param name="key">The animation key.</param>
             /// <param name="fps">The frame rate of the animation.</param>
             /// <param name="loop">Whether to loop the animation.</param>
-            public Animation(List<Subtexture> frames, TKey key, int fps = 12, bool loop = true)
+            public Animation(List<Subtexture> frames, TKey key, int fps = 12, bool loop = false)
             {
                 Frames = frames;
                 Fps = fps;
@@ -73,7 +77,7 @@ namespace Bubbles.Entities
                 Key = key;
             }
             
-            public Animation(Subtexture frame, TKey key, int fps = 12, bool loop = true)
+            public Animation(Subtexture frame, TKey key, int fps = 12, bool loop = false)
             {
                 Frames = new List<Subtexture> {frame};
                 Fps = fps;

@@ -20,8 +20,8 @@ namespace Bubbles.Scenes
             var player = new PlayerEntity();
             addEntity(player);
 
-//            var weapon = new AnimatedHammerEntity("hammer");
-            var weapon = new SwordEntity("sword");
+            var weapon = new AnimatedHammerEntity("hammer");
+//            var weapon = new SwordEntity("sword");
             weapon.setPosition(new Vector2(0, 16));
             weapon.setParent(player);
 //            sword.addComponent(new RotateTowardsMouse());
@@ -43,7 +43,7 @@ namespace Bubbles.Scenes
             addEntityProcessor(new TrackMouseSystem());
             addEntityProcessor(new PhysicsSystem());
             addEntityProcessor(new AnimateMovementSystem());
-            addEntityProcessor(new AnimateComboSystem());
+            addEntityProcessor(new AnimateHammerSystem());
             addEntityProcessor(new AnimateMeleeSystem());
 //            addEntityProcessor(new HeadTowardsEntitySystem(new Matcher().all(typeof(Player)), cursor));
             addEntityProcessor(new RotateTowardsMouseSystem());

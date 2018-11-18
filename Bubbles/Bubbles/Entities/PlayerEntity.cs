@@ -19,7 +19,7 @@ namespace Bubbles.Entities
         {
             Initialise("player", 32);
 
-            AddAnimation(new Animation(SubTextures, AnimateMovementSystem.Animations.Walk, 6));
+            AddAnimation(new Animation(SubTextures, AnimateMovementSystem.Animations.Walk, 6, true));
             AddAnimation(new Animation(SubTextures[0], AnimateMovementSystem.Animations.Idle));
 
             addComponent(new Player());
