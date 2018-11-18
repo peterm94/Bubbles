@@ -21,7 +21,7 @@ namespace Bubbles.Systems
 
             if (MathUtil.FloatEquals(motion.Speed, 0)) return;
 
-            mover.move(motion.Direction * motion.Speed * Time.deltaTime, out var result);
+            mover.move(motion.Direction * motion.Speed * motion.SpeedMultiplier * Time.deltaTime, out var result);
 
             motion.Speed = Math.Max(motion.Speed - motion.Friction * Time.deltaTime, 0);
         }

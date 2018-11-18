@@ -29,13 +29,18 @@ namespace Bubbles.Systems.Animation
             var sprite = entity.getComponent<Sprite<Animations>>();
             var transformLock = entity.getComponent<TransformLock>();
             var spriteCollider = entity.getComponent<SpriteCollider<Animations>>();
-
+            
+            var parent = entity.parent.entity;
+            // Better hope the thing swinging can move :)
+            var motion = parent.getComponent<Motion>();
+            
             if (input.Swing)
             {
                 if (!sprite.isPlaying || sprite.isAnimationPlaying(Animations.Idle))
                 {
                     sprite.play(Animations.WarmUp);
                     transformLock.Locked = true;
+                    motion.SpeedMultiplier = 0.5f;
                 }
             }
                         
@@ -44,6 +49,7 @@ namespace Bubbles.Systems.Animation
             {
                 if (sprite.isAnimationPlaying(Animations.WarmUp))
                 {
+                    motion.SpeedMultiplier = 0.8f;
                     sprite.play(Animations.Swing);
                 }
                 else if (sprite.isAnimationPlaying(Animations.Swing))
@@ -55,6 +61,7 @@ namespace Bubbles.Systems.Animation
                     }
                     else
                     {
+                        motion.SpeedMultiplier = 1f;
                         sprite.play(Animations.CoolDown);
                     }
                 }

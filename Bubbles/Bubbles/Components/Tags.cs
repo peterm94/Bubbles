@@ -49,8 +49,8 @@ namespace Bubbles.Components
         {
             var whiteout = entity.scene.content.Load<Effect>("FX/whiteout");
             entity.getComponent<Sprite>().setMaterial(new Material(whiteout));
-
-            Core.schedule(0.15f, false, this,
+            
+            Core.schedule(0.10f, false, this,
                           timer => { entity.getComponent<Sprite>().setMaterial(Material.defaultMaterial); });
         }
     }

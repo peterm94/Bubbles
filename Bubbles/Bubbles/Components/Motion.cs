@@ -12,6 +12,8 @@ namespace Bubbles.Components
         /// </summary>
         public float Speed { get; set; }
 
+        public float SpeedMultiplier { get; set; } = 1f;
+
         /// <summary>
         ///     Direction to move in.
         ///     TODO instead of changing this directly, we should apply a force to preserve momentum.
