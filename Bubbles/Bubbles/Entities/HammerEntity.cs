@@ -19,20 +19,20 @@ namespace Bubbles.Entities
         public AnimatedHammerEntity(string name) : base(name)
         {
             Initialise("hammer", 192);
-            
+
             var swing = SubTextures.Skip(1).ToList();
             swing.Add(SubTextures[3]);
             swing.Add(SubTextures[2]);
             swing.Add(SubTextures[1]);
-            
+
             AddAnimation(new Animation(SubTextures.GetRange(1, 6), AnimateHammerSystem.Animations.WarmUp));
-            
+
             var reversed = SubTextures.GetRange(1, 4);
             reversed.Reverse();
             AddAnimation(new Animation(reversed, AnimateHammerSystem.Animations.CoolDown));
-            
+
             AddAnimation(new Animation(SubTextures.GetRange(7, 6), AnimateHammerSystem.Animations.Swing));
-            
+
             AddAnimation(new Animation(SubTextures[0], AnimateHammerSystem.Animations.Idle));
         }
 
@@ -77,8 +77,8 @@ namespace Bubbles.Entities
             Flags.setFlagExclusive(ref hammer2.collidesWithLayers, PhysicsLayers.ENEMY);
             Flags.setFlagExclusive(ref hammer2.physicsLayer, PhysicsLayers.PLAYER_WEAPON);
 
-            collider.AddAction(AnimateHammerSystem.Animations.Swing, 3, hammer1);
-            collider.AddAction(AnimateHammerSystem.Animations.Swing, 4, hammer2);
+            collider.AddAction(AnimateHammerSystem.Animations.Swing, 2, hammer1);
+            collider.AddAction(AnimateHammerSystem.Animations.Swing, 3, hammer2);
         }
     }
 }
