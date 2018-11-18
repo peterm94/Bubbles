@@ -9,6 +9,14 @@ namespace Bubbles.Components
     {
         private readonly Dictionary<Entity, Attacked> _hits = new Dictionary<Entity, Attacked>();
 
+        /// <summary>
+        /// Reset hit counter - allows for multiple hits in the same animation.
+        /// </summary>
+        public void ClearHits()
+        {
+            _hits.Clear();
+        }
+        
         protected override void FrameStartTrigger(Collider collider)
         {
             collider.enabled = true;

@@ -13,12 +13,13 @@ namespace Bubbles.Systems.Animation
             WarmUp,
             Swing,
             CoolDown,
-            NextSwing,
             Idle
         }
 
-        public AnimateHammerSystem() : base(new Matcher().all(typeof(MeleeInput), typeof(Sprite<Animations>),
-                                                              typeof(TransformLock)))
+        public AnimateHammerSystem() : base(new Matcher().all(typeof(MeleeInput), 
+                                                              typeof(Sprite<Animations>),
+                                                              typeof(TransformLock),
+                                                              typeof(SpriteCollider<Animations>)))
         {
         }
 
@@ -27,6 +28,7 @@ namespace Bubbles.Systems.Animation
             var input = entity.getComponent<MeleeInput>();
             var sprite = entity.getComponent<Sprite<Animations>>();
             var transformLock = entity.getComponent<TransformLock>();
+            var spriteCollider = entity.getComponent<SpriteCollider<Animations>>();
 
             if (input.Swing)
             {
@@ -36,9 +38,7 @@ namespace Bubbles.Systems.Animation
                     transformLock.Locked = true;
                 }
             }
-            
-            Console.WriteLine("Frame:" + sprite.currentFrame + ". Count: " + sprite.getAnimation(sprite.currentAnimation).frames.Count);
-            
+                        
             // Last frame of animation.
             if (sprite.currentFrame == sprite.getAnimation(sprite.currentAnimation).frames.Count - 1)
             {
@@ -48,7 +48,15 @@ namespace Bubbles.Systems.Animation
                 }
                 else if (sprite.isAnimationPlaying(Animations.Swing))
                 {
-                    sprite.play(input.Swing ? Animations.Swing : Animations.CoolDown);
+                    if (input.Swing)
+                    {
+                        spriteCollider.ClearHits();
+                        sprite.play(Animations.Swing);   
+                    }
+                    else
+                    {
+                        sprite.play(Animations.CoolDown);
+                    }
                 }
                 else if (sprite.isAnimationPlaying(Animations.CoolDown))
                 {

@@ -77,8 +77,8 @@ namespace Bubbles.Entities
             Flags.setFlagExclusive(ref hammer2.collidesWithLayers, PhysicsLayers.ENEMY);
             Flags.setFlagExclusive(ref hammer2.physicsLayer, PhysicsLayers.PLAYER_WEAPON);
 
-            collider.AddAction(AnimateHammerSystem.Animations.Swing, 8, hammer1);
-            collider.AddAction(AnimateHammerSystem.Animations.Swing, 9, hammer2);
+            collider.AddAction(AnimateHammerSystem.Animations.Swing, 3, hammer1);
+            collider.AddAction(AnimateHammerSystem.Animations.Swing, 4, hammer2);
         }
     }
 }
