@@ -19,11 +19,11 @@ namespace Bubbles.Entities
 
             var sprite = addComponent(new Sprite<AnimateMeleeSystem.Animations>(subTextures[0]));
 
-            var swingTextures = subTextures.Skip(1).ToList();
-            swingTextures.Add(subTextures[3]);
-            swingTextures.Add(subTextures[2]);
-            swingTextures.Add(subTextures[1]);
-
+            var warmUpTextures = subTextures.GetRange(1, 3);
+            var coolDownTextures = subTextures.GetRange(1, 3);
+            coolDownTextures.Reverse();
+            
+            var swingTextures = subTextures.Skip(4).ToList();
             var swing = new SpriteAnimation(swingTextures);
 
             swing.setLoop(false);
