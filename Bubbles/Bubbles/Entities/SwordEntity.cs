@@ -10,24 +10,13 @@ using Nez.Textures;
 
 namespace Bubbles.Entities
 {
-    public class SwordEntity : Entity
+    public class SwordEntity : AnimatedEntity<AnimateMeleeSystem.Animations>
     {
-        public SwordEntity() : base("Sword")
+        public SwordEntity(string name) : base(name)
         {
-            var texture = Core.content.Load<Texture2D>("baked-sword");
-            var subTextures = Subtexture.subtexturesFromAtlas(texture, 96, 96);
-
-            var sprite = addComponent(new Sprite<AnimateMeleeSystem.Animations>(subTextures[0]));
-
-            var swingAnim = new SpriteAnimation(subTextures.Skip(1).ToList());
-
-            swingAnim.setLoop(false);
-            swingAnim.setFps(12);
-
-            var idleAnim = new SpriteAnimation(subTextures[0]);
-
-            sprite.addAnimation(AnimateMeleeSystem.Animations.Swing, swingAnim);
-            sprite.addAnimation(AnimateMeleeSystem.Animations.Idle, idleAnim);
+            Initialise("baked-sword", 96);
+            AddAnimation(new Animation(SubTextures.Skip(1).ToList(), AnimateMeleeSystem.Animations.Swing, loop: false));
+            AddAnimation(new Animation(SubTextures[0], AnimateMeleeSystem.Animations.Idle));
 
             addComponent(new PlayerControlled());
             addComponent(new Weapon());

@@ -54,8 +54,9 @@
     <Compile Include="Components\Tags.cs" />
     <Compile Include="Components\TransformLock.cs" />
     <Compile Include="Components\TweenMotion.cs" />
-    <Compile Include="Entities\CursorEntity.cs" />
+    <Compile Include="Entities\AnimatedEntity.cs" />
     <Compile Include="Entities\HammerEntity.cs" />
+    <Compile Include="Entities\CursorEntity.cs" />
     <Compile Include="Entities\MotionInfo.cs" />
     <Compile Include="Entities\EnemyEntity.cs" />
     <Compile Include="Entities\PlayerEntity.cs" />
