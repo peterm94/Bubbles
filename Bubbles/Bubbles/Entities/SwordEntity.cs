@@ -18,10 +18,8 @@ namespace Bubbles.Entities
             AddAnimation(new Animation(SubTextures.Skip(1).ToList(), AnimateMeleeSystem.Animations.Swing));
             AddAnimation(new Animation(SubTextures[0], AnimateMeleeSystem.Animations.Idle));
 
-            addComponent(new PlayerControlled());
             addComponent(new Weapon());
             addComponent(new MeleeInput());
-            addComponent(new RotateTowardsMouse());
             addComponent(new TransformLock());
 
             var collider = addComponent(new SpriteCollider<AnimateMeleeSystem.Animations>());
