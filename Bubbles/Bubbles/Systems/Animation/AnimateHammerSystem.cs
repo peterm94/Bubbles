@@ -30,6 +30,7 @@ namespace Bubbles.Systems.Animation
             var transformLock = entity.getComponent<TransformLock>();
             var spriteCollider = entity.getComponent<SpriteCollider<Animations>>();
             
+            
             var parent = entity.parent.entity;
             // Better hope the thing swinging can move :)
             var motion = parent.getComponent<Motion>();

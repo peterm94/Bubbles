@@ -1,3 +1,4 @@
+using System.Threading;
 using Microsoft.Xna.Framework.Graphics;
 using Nez;
 using Nez.Sprites;
@@ -28,6 +29,11 @@ namespace Bubbles.Components
     {
     }
 
+    public class Sleep : Component
+    {
+        public int Timeout { get; set; }
+    }
+
     public class Attacked : Component
     {
         public Attacked(Collider hitter)
@@ -49,9 +55,11 @@ namespace Bubbles.Components
         {
             var whiteout = entity.scene.content.Load<Effect>("FX/whiteout");
             entity.getComponent<Sprite>().setMaterial(new Material(whiteout));
+
+            entity.addComponent(new Sleep {Timeout = 50});
             
             Core.schedule(0.10f, false, this,
-                          timer => { entity.getComponent<Sprite>().setMaterial(Material.defaultMaterial); });
+                          timer => { entity.getComponent<Sprite>().setMaterial(Material.defaultMaterial); });            
         }
     }
 }
