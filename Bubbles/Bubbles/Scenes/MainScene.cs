@@ -1,3 +1,5 @@
+using System;
+using Bubbles.Components;
 using Bubbles.Entities;
 using Bubbles.Systems;
 using Bubbles.Systems.Animation;
@@ -17,23 +19,32 @@ namespace Bubbles.Scenes
             addRenderer(new ScreenSpaceRenderer(100, SCREEN_SPACE_RENDER_LAYER));
             addRenderer(new RenderLayerExcludeRenderer(0, SCREEN_SPACE_RENDER_LAYER));
 
+            addEntity(new CursorEntity());
+            
             var player = new PlayerEntity();
             addEntity(player);
 
-            var weapon = new AnimatedHammerEntity("hammer");
-//            var weapon = new SwordEntity("sword");
+            var weapon = new HammerEntity("hammer");
             weapon.setPosition(new Vector2(0, 16));
             weapon.setParent(player);
-//            sword.addComponent(new RotateTowardsMouse());
+            weapon.addComponent(new RotateTowardsMouse());
+            weapon.addComponent(new PlayerControlled());
             addEntity(weapon);
 
-            addEntity(new CursorEntity());
 
             Entity enemy1 = addEntity(new EnemyEntity("dude1"));
-            enemy1.transform.position = new Vector2(50, 50);
+            enemy1.setPosition(new Vector2(50, 50));
+            var sword1 = new SwordEntity("sword1");
+            sword1.setPosition(0, 16);
+            sword1.setParent(enemy1);
+            addEntity(sword1);
 
             Entity enemy2 = addEntity(new EnemyEntity("dude2"));
-            enemy2.transform.position = new Vector2(300, 200);
+            enemy2.setPosition(new Vector2(300, 200));
+            var sword2 = new SwordEntity("sword2");
+            sword2.setPosition(0, 16);
+            sword2.setParent(enemy2);
+            addEntity(sword2);
 
 //            camera.addComponent(new FollowCamera(player, FollowCamera.CameraStyle.CameraWindow));
 
