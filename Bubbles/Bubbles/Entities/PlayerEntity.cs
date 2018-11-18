@@ -9,7 +9,7 @@ using Nez.Textures;
 
 namespace Bubbles.Entities
 {
-    public class PlayerEntity : Entity
+    public class PlayerEntity : AnimatedEntity<AnimateMovementSystem.Animations>
     {
         public PlayerEntity() : base("Player")
         {
@@ -17,19 +17,10 @@ namespace Bubbles.Entities
 
         public override void onAddedToScene()
         {
-            // Load the textures in
-            var tex = Core.content.Load<Texture2D>("player");
-            var subTextures = Subtexture.subtexturesFromAtlas(tex, 32, tex.Height);
+            Initialise("player", 32);
 
-            // Create the sprite component with the first frame loaded by default.
-            var sprite = addComponent(new Sprite<AnimateMovementSystem.Animations>(subTextures[0]));
-
-            // Register the walk animation and start it
-            var walkAnim = new SpriteAnimation(subTextures);
-            walkAnim.setFps(6);
-            var idleAnim = new SpriteAnimation(subTextures[0]);
-            sprite.addAnimation(AnimateMovementSystem.Animations.Walk, walkAnim);
-            sprite.addAnimation(AnimateMovementSystem.Animations.Idle, idleAnim);
+            AddAnimation(new Animation(SubTextures, AnimateMovementSystem.Animations.Walk, 6, true));
+            AddAnimation(new Animation(SubTextures[0], AnimateMovementSystem.Animations.Idle));
 
             addComponent(new Player());
             addComponent(new PlayerControlled());

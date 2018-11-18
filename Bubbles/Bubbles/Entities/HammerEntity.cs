@@ -1,4 +1,8 @@
 using System.Linq;
+using System.Runtime.InteropServices;
+using Bubbles.Systems.Animation;
+using Nez.Sprites;
+using System.Linq;
 using Bubbles.Components;
 using Bubbles.Layers;
 using Bubbles.Systems.Animation;
@@ -10,39 +14,37 @@ using Nez.Textures;
 
 namespace Bubbles.Entities
 {
-    public class HammerEntity : Entity
+    public class AnimatedHammerEntity : AnimatedEntity<AnimateHammerSystem.Animations>
     {
-        public HammerEntity() : base("hammer")
+        public AnimatedHammerEntity(string name) : base(name)
         {
-            var texture = Core.content.Load<Texture2D>("hammer");
-            var subTextures = Subtexture.subtexturesFromAtlas(texture, 192, 192);
+            Initialise("hammer", 192);
+            
+            var swing = SubTextures.Skip(1).ToList();
+            swing.Add(SubTextures[3]);
+            swing.Add(SubTextures[2]);
+            swing.Add(SubTextures[1]);
+            
+            AddAnimation(new Animation(SubTextures.GetRange(1, 6), AnimateHammerSystem.Animations.WarmUp));
+            
+            var reversed = SubTextures.GetRange(1, 4);
+            reversed.Reverse();
+            AddAnimation(new Animation(reversed, AnimateHammerSystem.Animations.CoolDown));
+            
+            AddAnimation(new Animation(SubTextures.GetRange(7, 6), AnimateHammerSystem.Animations.Swing));
+            
+            AddAnimation(new Animation(SubTextures[0], AnimateHammerSystem.Animations.Idle));
+        }
 
-            var sprite = addComponent(new Sprite<AnimateMeleeSystem.Animations>(subTextures[0]));
-
-            var swingTextures = subTextures.Skip(1).ToList();
-            swingTextures.Add(subTextures[3]);
-            swingTextures.Add(subTextures[2]);
-            swingTextures.Add(subTextures[1]);
-
-            var swing = new SpriteAnimation(swingTextures);
-
-            swing.setLoop(false);
-            swing.setFps(12);
-//            swing.setFps(1);
-
-            var idle = new SpriteAnimation(subTextures[0]);
-
-            sprite.addAnimation(AnimateMeleeSystem.Animations.Swing, swing);
-            sprite.addAnimation(AnimateMeleeSystem.Animations.Idle, idle);
-
+        public override void onAddedToScene()
+        {
             addComponent(new PlayerControlled());
             addComponent(new Weapon());
             addComponent(new MeleeInput());
             addComponent(new RotateTowardsMouse());
             addComponent(new TransformLock());
 
-            var collider = addComponent(new SpriteCollider<AnimateMeleeSystem.Animations>());
-
+            var collider = addComponent(new SpriteCollider<AnimateHammerSystem.Animations>());
 
             var hammer1 = new PolygonCollider(new[]
             {
@@ -75,8 +77,8 @@ namespace Bubbles.Entities
             Flags.setFlagExclusive(ref hammer2.collidesWithLayers, PhysicsLayers.ENEMY);
             Flags.setFlagExclusive(ref hammer2.physicsLayer, PhysicsLayers.PLAYER_WEAPON);
 
-            collider.AddAction(AnimateMeleeSystem.Animations.Swing, 8, hammer1);
-            collider.AddAction(AnimateMeleeSystem.Animations.Swing, 9, hammer2);
+            collider.AddAction(AnimateHammerSystem.Animations.Swing, 3, hammer1);
+            collider.AddAction(AnimateHammerSystem.Animations.Swing, 4, hammer2);
         }
     }
 }

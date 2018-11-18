@@ -10,17 +10,14 @@ using Nez.Textures;
 
 namespace Bubbles.Entities
 {
-    public class EnemyEntity : Entity
+    public class EnemyEntity : AnimatedEntity<AnimateMovementSystem.Animations>
     {
-        public EnemyEntity() : base("Enemy")
-        {
+        public EnemyEntity(string name) : base(name)
+        {    
             var texture2D = Core.content.Load<Texture2D>("player");
             var recolour = Palette.RecolourTexture(texture2D, Palette.Progressions.Blue, Palette.Progressions.Green);
-            var subTextures = Subtexture.subtexturesFromAtlas(recolour, 32, texture2D.Height);
-
-            // Create the sprite component with the first frame loaded by default.
-            var sprite = addComponent(new Sprite<AnimateMovementSystem.Animations>(subTextures[0]));
-
+            Initialise(recolour, 32);
+                        
             addComponent(new Enemy());
 //            addComponent(new TweenMotion(1.5f));
 
