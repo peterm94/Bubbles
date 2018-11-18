@@ -14,9 +14,9 @@ using Nez.Textures;
 
 namespace Bubbles.Entities
 {
-    public class AnimatedHammerEntity : AnimatedEntity<AnimateHammerSystem.Animations>
+    public class HammerEntity : AnimatedEntity<AnimateHammerSystem.Animations>
     {
-        public AnimatedHammerEntity(string name) : base(name)
+        public HammerEntity(string name) : base(name)
         {
             Initialise("hammer", 192);
 

@@ -20,7 +20,7 @@ namespace Bubbles.Scenes
             var player = new PlayerEntity();
             addEntity(player);
 
-            var weapon = new AnimatedHammerEntity("hammer");
+            var weapon = new HammerEntity("hammer");
 //            var weapon = new SwordEntity("sword");
             weapon.setPosition(new Vector2(0, 16));
             weapon.setParent(player);
@@ -30,10 +30,10 @@ namespace Bubbles.Scenes
             addEntity(new CursorEntity());
 
             Entity enemy1 = addEntity(new EnemyEntity("dude1"));
-            enemy1.transform.position = new Vector2(50, 50);
+            enemy1.setPosition(new Vector2(50, 50));
 
             Entity enemy2 = addEntity(new EnemyEntity("dude2"));
-            enemy2.transform.position = new Vector2(300, 200);
+            enemy2.setPosition(new Vector2(300, 200));
 
             camera.addComponent(new FollowCamera(player, FollowCamera.CameraStyle.CameraWindow));
 
