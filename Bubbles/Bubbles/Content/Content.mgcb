@@ -73,3 +73,9 @@
 /processorParam:TextureFormat=Color
 /build:../../../Bubbles-Art/Sword.png;Sword.png
 
+#begin FX/whiteout.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:FX/whiteout.fx
+

@@ -49,6 +49,7 @@ namespace Bubbles.Components
         {
             // Add the collider to the entity.
             entity.addComponent(collider);
+            collider.enabled = false;
         }
 
         private void OnCollisionEnter(Collider other, Collider local)

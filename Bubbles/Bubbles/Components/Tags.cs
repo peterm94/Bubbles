@@ -1,4 +1,6 @@
+using Microsoft.Xna.Framework.Graphics;
 using Nez;
+using Nez.Sprites;
 
 namespace Bubbles.Components
 {
@@ -34,5 +36,22 @@ namespace Bubbles.Components
         }
 
         public Collider Hitter { get; }
+
+        public override void onAddedToEntity()
+        {
+            entity.addComponent(new FlashWhite());
+        }
+    }
+
+    public class FlashWhite : Component
+    {
+        public override void onAddedToEntity()
+        {
+            var whiteout = entity.scene.content.Load<Effect>("FX/whiteout");
+            entity.getComponent<Sprite>().setMaterial(new Material(whiteout));
+
+            Core.schedule(0.15f, false, this,
+                          timer => { entity.getComponent<Sprite>().setMaterial(Material.defaultMaterial); });
+        }
     }
 }

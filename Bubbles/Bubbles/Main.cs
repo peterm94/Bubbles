@@ -1,5 +1,7 @@
+using System.Security.Principal;
 using Bubbles.Scenes;
 using Bubbles.Util;
+using Microsoft.Xna.Framework;
 using Nez;
 
 namespace Bubbles
@@ -22,7 +24,7 @@ namespace Bubbles
             // Choosing a size that is slightly larger than your average player/enemy size usually works best.
             Physics.spatialHashCellSize = 64;
 
-            //            debugRenderEnabled = true;
+            debugRenderEnabled = true;
 
             Window.AllowUserResizing = true;
 

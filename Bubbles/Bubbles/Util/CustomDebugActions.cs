@@ -11,6 +11,12 @@ namespace Bubbles.Util
         {
             _core = core;
             DebugConsole.bindActionToFunctionKey(1, ToggleMouse);
+            DebugConsole.bindActionToFunctionKey(2, ToggleDebugDraw);
+        }
+
+        private void ToggleDebugDraw()
+        {
+            Core.debugRenderEnabled = !Core.debugRenderEnabled;
         }
 
         private void ToggleMouse()
