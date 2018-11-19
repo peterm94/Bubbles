@@ -23,7 +23,7 @@ namespace Bubbles.Systems.Visuals
             {
                 // This CAN be null if the entity is destroyed before the timeout expires.
                 entity?.getComponent<Sprite>()?.setMaterial(Material.defaultMaterial);
-                entity.removeComponent<FlashWhite>();
+                entity?.removeComponent<FlashWhite>();
             });            
         }
     }
