@@ -1,6 +1,7 @@
 using System;
 using Bubbles.Components;
 using Bubbles.Entities;
+using Bubbles.Util;
 using Nez;
 using Nez.Sprites;
 
@@ -40,6 +41,7 @@ namespace Bubbles.Systems.Animation
                 if (!sprite.isPlaying || sprite.isAnimationPlaying(Animations.Idle))
                 {
                     sprite.play(Animations.WarmUp);
+                    entity.setRotation(Inaccuracy.MakeInaccurate(entity.rotation));
                     transformLock.Locked = true;
                     motion.SpeedMultiplier = 0.5f;
                 }
@@ -57,6 +59,7 @@ namespace Bubbles.Systems.Animation
                 {
                     if (input.Swing)
                     {
+                        motion.SpeedMultiplier = 0.5f;
                         spriteCollider.ClearHits();
                         sprite.play(Animations.Swing);   
                     }

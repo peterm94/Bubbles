@@ -1,4 +1,5 @@
 using Bubbles.Components;
+using Bubbles.Util;
 using Nez;
 using Nez.Sprites;
 
@@ -33,6 +34,7 @@ namespace Bubbles.Systems.Animation
                         sprite.play(Animations.Idle);
                         transformLock.Locked = false;
                     };
+                    entity.setRotation(Inaccuracy.MakeInaccurate(entity.rotation));
                     transformLock.Locked = true;
                 }
             }

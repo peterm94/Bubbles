@@ -88,6 +88,7 @@
     <Compile Include="Systems\TestMultiSystem.cs" />
     <Compile Include="Systems\Visuals\FlashWhiteSystem.cs" />
     <Compile Include="Util\CustomDebugActions.cs" />
+    <Compile Include="Util\Inaccuracy.cs" />
     <Compile Include="Util\MultiEntityProcessingSystem.cs" />
     <Compile Include="Util\MathUtil.cs" />
     <Compile Include="Util\SystemsDebugCommand.cs" />
