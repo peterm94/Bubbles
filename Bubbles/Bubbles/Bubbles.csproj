@@ -52,6 +52,7 @@
     <Compile Include="AI\EnemyAI.cs" />
     <Compile Include="AI\RunnableAction.cs" />
     <Compile Include="Components\AI\InRange.cs" />
+    <Compile Include="Components\Camera\GoodFollowCam.cs" />
     <Compile Include="Components\Combat\Attacked.cs" />
     <Compile Include="Components\Combat\Health.cs" />
     <Compile Include="Components\FrameTriggerComponent.cs" />
