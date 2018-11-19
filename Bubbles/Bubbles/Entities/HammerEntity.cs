@@ -18,6 +18,10 @@ namespace Bubbles.Entities
     {
         public HammerEntity(string name) : base(name)
         {
+        }
+
+        public override void onAddedToScene()
+        {
             Initialise("hammer", 192);
 
             var swing = SubTextures.Skip(1).ToList();
@@ -34,10 +38,7 @@ namespace Bubbles.Entities
             AddAnimation(new Animation(SubTextures.GetRange(7, 6), AnimateHammerSystem.Animations.Swing));
 
             AddAnimation(new Animation(SubTextures[0], AnimateHammerSystem.Animations.Idle));
-        }
 
-        public override void onAddedToScene()
-        {
             addComponent(new PlayerControlled());
             addComponent(new Weapon());
             addComponent(new MeleeInput());

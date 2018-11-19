@@ -14,6 +14,10 @@ namespace Bubbles.Entities
     {
         public SwordEntity(string name) : base(name)
         {
+        }
+
+        public override void onAddedToScene()
+        {
             Initialise("baked-sword", 96);
             AddAnimation(new Animation(SubTextures.Skip(1).ToList(), AnimateMeleeSystem.Animations.Swing));
             AddAnimation(new Animation(SubTextures[0], AnimateMeleeSystem.Animations.Idle));

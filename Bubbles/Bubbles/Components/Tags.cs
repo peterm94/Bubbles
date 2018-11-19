@@ -35,6 +35,11 @@ namespace Bubbles.Components
     {
     }
 
+    // Mark an entity with this to ignore destroy() calls on it.
+    public class WontDestroy : Component
+    {
+    }
+    
     public class FlashWhite : Component
     {
     }

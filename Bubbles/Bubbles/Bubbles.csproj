@@ -60,10 +60,10 @@
     <Compile Include="Entities\AnimatedEntity.cs" />
     <Compile Include="Entities\HammerEntity.cs" />
     <Compile Include="Entities\CursorEntity.cs" />
-    <Compile Include="Entities\MotionInfo.cs" />
     <Compile Include="Entities\EnemyEntity.cs" />
     <Compile Include="Entities\PlayerEntity.cs" />
     <Compile Include="Entities\SwordEntity.cs" />
+    <Compile Include="Entities\Unused\MotionInfo.cs" />
     <Compile Include="Graphics\Colour\Palette.cs" />
     <Compile Include="Graphics\Renderers\BlackOutlineRenderer.cs" />
     <Compile Include="Layers\PhysicsLayers.cs" />
