@@ -1,4 +1,5 @@
 using System;
+using Bubbles.Components;
 using Nez;
 
 namespace Bubbles.Systems
@@ -7,7 +8,7 @@ namespace Bubbles.Systems
     {
         private readonly Entity to;
 
-        public HeadTowardsEntitySystem(Matcher matcher, Entity to) : base(matcher)
+        public HeadTowardsEntitySystem(Matcher matcher, Entity to) : base(matcher.all(typeof(Heading)))
         {
             this.to = to;
         }
@@ -17,7 +18,7 @@ namespace Bubbles.Systems
             var dir = Math.Atan2(to.position.Y - entity.position.Y,
                                  to.position.X - entity.position.X);
 
-            entity.setRotation((float) dir);
+            entity.getComponent<Heading>().Value = (float) dir;
         }
     }
 }

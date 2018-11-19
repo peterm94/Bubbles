@@ -2,6 +2,7 @@ using System;
 using Bubbles.Components;
 using Bubbles.Entities;
 using Bubbles.Systems;
+using Bubbles.Systems.AI.Enemy;
 using Bubbles.Systems.Animation;
 using Bubbles.Systems.Combat;
 using Bubbles.Systems.Controls;
@@ -48,6 +49,15 @@ namespace Bubbles.Scenes
             sword2.setParent(enemy2);
             addEntity(sword2);
 
+            #region AI
+            
+            addEntityProcessor(new HeadTowardsEntitySystem(new Matcher().all(typeof(Enemy)), player));
+            addEntityProcessor(new DestroyEntitySystem());
+            addEntityProcessor(new InRangeOfEntity(player));
+            
+            #endregion
+
+            
 //            camera.addComponent(new FollowCamera(player, FollowCamera.CameraStyle.CameraWindow));
 
             addEntityProcessor(new MovementInputSystem());
