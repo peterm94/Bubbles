@@ -6,7 +6,7 @@ namespace Bubbles.Systems.Combat
 {
     public class DestroyEntitySystem : EntityProcessingSystem
     {
-        public DestroyEntitySystem() : base(new Matcher().all(typeof(Destroyed)))
+        public DestroyEntitySystem() : base(new Matcher().all(typeof(Destroyed)).exclude(typeof(FlashWhite)))
         {
         }
 

@@ -64,7 +64,7 @@ namespace Bubbles.Scenes
             addEntityProcessor(new DealDamageSystem());
             addEntityProcessor(new BringOutYourDead());
             addEntityProcessor(new DestroyEntitySystem());
-            addEntityProcessor(new FlashWhiteSystem());
+            addEntityProcessor(new FlashWhiteSystem(this));
 
 //            addRenderer(new BlackOutlineRenderer(1000, camera));
         }

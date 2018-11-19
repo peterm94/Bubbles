@@ -15,6 +15,10 @@ namespace Bubbles.Entities
     {
         public EnemyEntity(string name) : base(name)
         {    
+        }
+
+        public override void onAddedToScene()
+        {
             var texture2D = Core.content.Load<Texture2D>("player");
             var recolour = Palette.RecolourTexture(texture2D, Palette.Progressions.Blue, Palette.Progressions.Green);
             Initialise(recolour, 32);

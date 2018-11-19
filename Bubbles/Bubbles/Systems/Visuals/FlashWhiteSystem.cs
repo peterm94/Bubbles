@@ -10,7 +10,7 @@ namespace Bubbles.Systems.Visuals
     {
         private readonly Effect _whiteout;
         
-        public FlashWhiteSystem() : base(new Matcher().all(typeof(FlashWhite)))
+        public FlashWhiteSystem(Scene scene) : base(new Matcher().all(typeof(FlashWhite)))
         {
             _whiteout = scene.content.Load<Effect>("FX/whiteout");
         }
@@ -23,9 +23,8 @@ namespace Bubbles.Systems.Visuals
             {
                 // This CAN be null if the entity is destroyed before the timeout expires.
                 entity?.getComponent<Sprite>()?.setMaterial(Material.defaultMaterial);
-            });
-            
-            entity.removeComponent<FlashWhite>();
+                entity.removeComponent<FlashWhite>();
+            });            
         }
     }
 }
