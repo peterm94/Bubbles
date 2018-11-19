@@ -1,4 +1,10 @@
-﻿sampler s0;
+﻿#if OPENGL
+	#define PS_SHADERMODEL ps_3_0
+#else
+	#define PS_SHADERMODEL ps_4_0_level_9_1
+#endif
+
+sampler s0;
 
 
 struct POS_INPUT
@@ -25,6 +31,6 @@ technique SpriteBlink
 {
 	pass P0
 	{
-		PixelShader = compile ps_3_0 mainPixel();
+		PixelShader = compile PS_SHADERMODEL mainPixel();
 	}
 };
