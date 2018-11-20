@@ -1,4 +1,5 @@
 using Bubbles.Components;
+using Bubbles.Components.Camera;
 using Bubbles.Entities;
 using Bubbles.Systems;
 using Bubbles.Systems.Animation;
@@ -20,8 +21,8 @@ namespace Bubbles.Scenes
             addRenderer(new ScreenSpaceRenderer(100, SCREEN_SPACE_RENDER_LAYER));
             addRenderer(new RenderLayerExcludeRenderer(0, SCREEN_SPACE_RENDER_LAYER));
 
-            addEntity(new CursorEntity());
-            
+            var cursor = addEntity(new CursorEntity());
+
             var player = new PlayerEntity();
             addEntity(player);
 
@@ -48,8 +49,8 @@ namespace Bubbles.Scenes
             addEntity(sword2);
 
 
-            
-//            camera.addComponent(new FollowCamera(player, FollowCamera.CameraStyle.CameraWindow));
+
+            camera.addComponent(new GoodFollowCam(player, cursor));
 
             addEntityProcessor(new MovementInputSystem());
             addEntityProcessor(new MeleeInputSystem());
