@@ -13,9 +13,9 @@ using Nez;
 namespace Bubbles.Entities
 {
     public class EnemyEntity : AnimatedEntity<AnimateMovementSystem.Animations>
-    {           
+    {
         public EnemyEntity(string name) : base(name)
-        {    
+        {
         }
 
         public override void onAddedToScene()

@@ -23,8 +23,9 @@ namespace Bubbles.Components
     {
     }
 
-    public class RotateTowardsMouse : Component
+    public class RotateTowards : Component
     {
+        public Entity Towards { get; set; }
     }
 
     public class Weapon : Component

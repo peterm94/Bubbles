@@ -53,6 +53,7 @@
     <Compile Include="Components\Camera\GoodFollowCam.cs" />
     <Compile Include="Components\Combat\Attacked.cs" />
     <Compile Include="Components\Combat\Health.cs" />
+    <Compile Include="Components\Combat\Weapon.cs" />
     <Compile Include="Components\FrameTriggerComponent.cs" />
     <Compile Include="Components\Heading.cs" />
     <Compile Include="Components\MeleeInput.cs" />
@@ -91,7 +92,7 @@
     <Compile Include="Systems\PhysicsSystem.cs" />
     <Compile Include="Systems\MovementSystem.cs" />
     <Compile Include="Systems\Position\TrackMouseSystem.cs" />
-    <Compile Include="Systems\RotateTowardsMouseSystem.cs" />
+    <Compile Include="Systems\RotateTowardsEntitySystem.cs" />
     <Compile Include="Systems\TestMultiSystem.cs" />
     <Compile Include="Systems\Visuals\FlashWhiteSystem.cs" />
     <Compile Include="Util\CustomDebugActions.cs" />
