@@ -98,6 +98,7 @@
     <Compile Include="Util\Inaccuracy.cs" />
     <Compile Include="Util\MultiEntityProcessingSystem.cs" />
     <Compile Include="Util\MathUtil.cs" />
+    <Compile Include="Util\ParallelEntityProcessingSystem.cs" />
     <Compile Include="Util\SystemsDebugCommand.cs" />
   </ItemGroup>
   <ItemGroup>
