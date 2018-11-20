@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Bubbles.Components;
 using Nez;
@@ -6,7 +7,7 @@ namespace Bubbles.Systems.Combat
 {
     public class DestroyEntitySystem : EntityProcessingSystem
     {
-        public DestroyEntitySystem() : base(new Matcher().all(typeof(Destroyed)).exclude(typeof(FlashWhite)))
+        public DestroyEntitySystem() : base(new Matcher().all(typeof(Destroyed)).exclude(typeof(WontDestroy)))
         {
         }
 
