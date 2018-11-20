@@ -3,6 +3,7 @@ using Bubbles.AI;
 using Bubbles.Components;
 using Bubbles.Components.AI;
 using Bubbles.Components.Combat;
+using Bubbles.Components.Visuals;
 using Bubbles.Graphics.Colour;
 using Bubbles.Layers;
 using Bubbles.Systems;
@@ -39,6 +40,7 @@ namespace Bubbles.Entities
             addComponent(new Motion {SpeedMultiplier = 0.5f});
             addComponent(new InRange());
             addComponent<EnemyAI>();
+            addComponent(new HealthBar(this));
 //            addComponent(new TweenMotion(1.5f));
 
             var collider = addComponent(new CircleCollider(8f));

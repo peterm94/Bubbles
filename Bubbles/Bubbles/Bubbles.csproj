@@ -66,6 +66,7 @@
     <Compile Include="Components\TweenMotion.cs" />
     <Compile Include="Components\Unused\EnemyDamager.cs" />
     <Compile Include="Components\Unused\SpriteMotion.cs" />
+    <Compile Include="Components\Visuals\HealthBar.cs" />
     <Compile Include="Components\Visuals\Sleep.cs" />
     <Compile Include="Entities\AnimatedEntity.cs" />
     <Compile Include="Entities\HammerEntity.cs" />
