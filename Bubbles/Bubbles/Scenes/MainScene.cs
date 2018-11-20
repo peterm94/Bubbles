@@ -48,8 +48,6 @@ namespace Bubbles.Scenes
             sword2.setParent(enemy2);
             addEntity(sword2);
 
-
-
             camera.addComponent(new GoodFollowCam(player, cursor));
 
             addEntityProcessor(new MovementInputSystem());
