@@ -46,15 +46,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AI\Actions\AttackAction.cs" />
-    <Compile Include="AI\Actions\MoveAction.cs" />
-    <Compile Include="AI\Actions\StopAction.cs" />
-    <Compile Include="AI\EnemyAgent.cs" />
-    <Compile Include="AI\EnemyAI.cs" />
-    <Compile Include="AI\RunnableAction.cs" />
-    <Compile Include="Components\AI\InRange.cs" />
+    <Compile Include="AI\Agents\EnemyAgent.cs" />
+    <Compile Include="AI\Boilerplate\EntityAction.cs" />
+    <Compile Include="AI\Boilerplate\GOAPStateMachine.cs" />
+    <Compile Include="AI\Boilerplate\Movement.cs" />
     <Compile Include="Components\Camera\GoodFollowCam.cs" />
     <Compile Include="Components\Combat\Attacked.cs" />
     <Compile Include="Components\Combat\Health.cs" />
+    <Compile Include="Components\Combat\Weapon.cs" />
     <Compile Include="Components\FrameTriggerComponent.cs" />
     <Compile Include="Components\Heading.cs" />
     <Compile Include="Components\MeleeInput.cs" />
@@ -82,7 +81,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scenes\MainScene.cs" />
-    <Compile Include="Systems\AI\Enemy\InRangeOfEntity.cs" />
     <Compile Include="Systems\Animation\AnimateHammerSystem.cs" />
     <Compile Include="Systems\Animation\AnimateMovementSystem.cs" />
     <Compile Include="Systems\Animation\AnimateMeleeSystem.cs" />
@@ -90,19 +88,19 @@
     <Compile Include="Systems\Combat\BringOutYourDead.cs" />
     <Compile Include="Systems\Combat\DealDamageSystem.cs" />
     <Compile Include="Systems\Combat\DestroyEntitySystem.cs" />
-    <Compile Include="Systems\HeadTowardsEntitySystem.cs" />
     <Compile Include="Systems\Controls\MeleeInputSystem.cs" />
     <Compile Include="Systems\Controls\MovementInputSystem.cs" />
     <Compile Include="Systems\PhysicsSystem.cs" />
     <Compile Include="Systems\MovementSystem.cs" />
     <Compile Include="Systems\Position\TrackMouseSystem.cs" />
-    <Compile Include="Systems\RotateTowardsMouseSystem.cs" />
+    <Compile Include="Systems\RotateTowardsEntitySystem.cs" />
     <Compile Include="Systems\TestMultiSystem.cs" />
     <Compile Include="Systems\Visuals\FlashWhiteSystem.cs" />
     <Compile Include="Util\CustomDebugActions.cs" />
     <Compile Include="Util\Inaccuracy.cs" />
     <Compile Include="Util\MultiEntityProcessingSystem.cs" />
     <Compile Include="Util\MathUtil.cs" />
+    <Compile Include="Util\ParallelEntityProcessingSystem.cs" />
     <Compile Include="Util\SystemsDebugCommand.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,9 +1,8 @@
-using System;
 using Bubbles.Components;
 using Bubbles.Components.Camera;
+using Bubbles.Components.Combat;
 using Bubbles.Entities;
 using Bubbles.Systems;
-using Bubbles.Systems.AI.Enemy;
 using Bubbles.Systems.Animation;
 using Bubbles.Systems.Combat;
 using Bubbles.Systems.Controls;
@@ -31,33 +30,28 @@ namespace Bubbles.Scenes
             var weapon = new HammerEntity("hammer");
             weapon.setPosition(new Vector2(0, 16));
             weapon.setParent(player);
-            weapon.addComponent(new RotateTowardsMouse());
+            weapon.addComponent(new RotateTowards {Towards = cursor});
             weapon.addComponent(new PlayerControlled());
             addEntity(weapon);
 
 
-            Entity enemy1 = addEntity(new EnemyEntity("dude1"));
-            enemy1.setPosition(new Vector2(50, 50));
             var sword1 = new SwordEntity("sword1");
+            Entity enemy1 = addEntity(new EnemyEntity("dude1"));
+            enemy1.addComponent(new Equipped {Equip = sword1});
             sword1.setPosition(0, 16);
             sword1.setParent(enemy1);
+            sword1.addComponent(new RotateTowards {Towards = player});
             addEntity(sword1);
+            enemy1.setPosition(new Vector2(50, 50));
 
-            Entity enemy2 = addEntity(new EnemyEntity("dude2"));
-            enemy2.setPosition(new Vector2(300, 200));
             var sword2 = new SwordEntity("sword2");
+            Entity enemy2 = addEntity(new EnemyEntity("dude2"));
+            enemy2.addComponent(new Equipped {Equip = sword2});
+            enemy2.setPosition(new Vector2(300, 200));
             sword2.setPosition(0, 16);
             sword2.setParent(enemy2);
+            sword2.addComponent(new RotateTowards {Towards = player});
             addEntity(sword2);
-
-            #region AI
-
-            addEntityProcessor(new HeadTowardsEntitySystem(new Matcher().all(typeof(Enemy)), player));
-            addEntityProcessor(new DestroyEntitySystem());
-            addEntityProcessor(new InRangeOfEntity(player));
-
-            #endregion
-
 
             camera.addComponent(new GoodFollowCam(player, cursor));
 
@@ -70,7 +64,7 @@ namespace Bubbles.Scenes
             addEntityProcessor(new AnimateHammerSystem());
             addEntityProcessor(new AnimateMeleeSystem());
 //            addEntityProcessor(new HeadTowardsEntitySystem(new Matcher().all(typeof(Player)), cursor));
-            addEntityProcessor(new RotateTowardsMouseSystem());
+            addEntityProcessor(new RotateTowardsEntitySystem());
             addEntityProcessor(new ChargeEntitySystem(player));
             addEntityProcessor(new DealDamageSystem());
             addEntityProcessor(new BringOutYourDead());

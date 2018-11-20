@@ -17,6 +17,7 @@ namespace Bubbles.Components
             // TODO This means that all enemies flash white and the sleep is always the same.
             // This should instead be up to the entity being attacked.
             entity.addComponent(new FlashWhite());
+            entity.addComponent(new WontDestroy());
             entity.addComponent(new Sleep {Timeout = 50});
         }
     }

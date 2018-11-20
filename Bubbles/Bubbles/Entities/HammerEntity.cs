@@ -42,7 +42,6 @@ namespace Bubbles.Entities
             addComponent(new PlayerControlled());
             addComponent(new Weapon());
             addComponent(new MeleeInput());
-            addComponent(new RotateTowardsMouse());
             addComponent(new TransformLock());
 
             var collider = addComponent(new SpriteCollider<AnimateHammerSystem.Animations>());

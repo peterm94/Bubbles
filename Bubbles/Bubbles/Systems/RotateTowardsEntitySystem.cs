@@ -4,18 +4,20 @@ using Nez;
 
 namespace Bubbles.Systems
 {
-    public class RotateTowardsMouseSystem : EntityProcessingSystem
+    public class RotateTowardsEntitySystem : EntityProcessingSystem
     {
-        public RotateTowardsMouseSystem() : base(new Matcher().all(typeof(RotateTowardsMouse)))
+        public RotateTowardsEntitySystem() : base(new Matcher().all(typeof(RotateTowards)))
         {
         }
 
         public override void process(Entity entity)
         {
-            var mousePos = Input.mousePosition;
+            var to = entity.getComponent<RotateTowards>().Towards;
 
-            var dir = Math.Atan2(mousePos.Y - entity.position.Y,
-                                 mousePos.X - entity.position.X);
+            if (to == null) return;
+            
+            var dir = Math.Atan2(to.position.Y - entity.position.Y,
+                                 to.position.X - entity.position.X);
 
             var animLocked = entity.getComponent<TransformLock>();
 
