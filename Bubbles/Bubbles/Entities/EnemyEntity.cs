@@ -1,4 +1,3 @@
-using Bubbles.AI;
 using Bubbles.AI.Agents;
 using Bubbles.AI.Boilerplate;
 using Bubbles.Components;
@@ -25,10 +24,10 @@ namespace Bubbles.Entities
             var recolour = Palette.RecolourTexture(texture2D, Palette.Progressions.Blue, Palette.Progressions.Green);
             
             Initialise(recolour, 32);
-            
+
             AddAnimation(new Animation(SubTextures, AnimateMovementSystem.Animations.Walk, 6, true));
             AddAnimation(new Animation(SubTextures[0], AnimateMovementSystem.Animations.Idle));
-            
+
             addComponent(new Enemy());
             addComponent(new Health());
             addComponent(new Heading());

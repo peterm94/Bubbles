@@ -33,7 +33,6 @@ namespace Bubbles.Entities
             addComponent(new Motion());
             addComponent(new HealthBar(this));
 
-            
             transform.position = new Vector2(256, 144);
 
             var collider = addComponent(new CircleCollider(8f));
