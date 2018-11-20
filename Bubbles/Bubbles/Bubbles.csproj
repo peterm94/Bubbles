@@ -46,12 +46,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AI\Actions\AttackAction.cs" />
-    <Compile Include="AI\Actions\MoveAction.cs" />
-    <Compile Include="AI\Actions\StopAction.cs" />
-    <Compile Include="AI\EnemyAgent.cs" />
-    <Compile Include="AI\EnemyAI.cs" />
-    <Compile Include="AI\RunnableAction.cs" />
-    <Compile Include="Components\AI\InRange.cs" />
+    <Compile Include="AI\Agents\EnemyAgent.cs" />
+    <Compile Include="AI\Boilerplate\EntityAction.cs" />
+    <Compile Include="AI\Boilerplate\GOAPStateMachine.cs" />
+    <Compile Include="AI\Boilerplate\Movement.cs" />
     <Compile Include="Components\Combat\Attacked.cs" />
     <Compile Include="Components\Combat\Health.cs" />
     <Compile Include="Components\FrameTriggerComponent.cs" />
@@ -80,7 +78,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scenes\MainScene.cs" />
-    <Compile Include="Systems\AI\Enemy\InRangeOfEntity.cs" />
     <Compile Include="Systems\Animation\AnimateHammerSystem.cs" />
     <Compile Include="Systems\Animation\AnimateMovementSystem.cs" />
     <Compile Include="Systems\Animation\AnimateMeleeSystem.cs" />
@@ -88,7 +85,6 @@
     <Compile Include="Systems\Combat\BringOutYourDead.cs" />
     <Compile Include="Systems\Combat\DealDamageSystem.cs" />
     <Compile Include="Systems\Combat\DestroyEntitySystem.cs" />
-    <Compile Include="Systems\HeadTowardsEntitySystem.cs" />
     <Compile Include="Systems\Controls\MeleeInputSystem.cs" />
     <Compile Include="Systems\Controls\MovementInputSystem.cs" />
     <Compile Include="Systems\PhysicsSystem.cs" />

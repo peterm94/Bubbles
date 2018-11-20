@@ -1,7 +1,7 @@
-using System.Collections.Generic;
 using Bubbles.AI;
+using Bubbles.AI.Agents;
+using Bubbles.AI.Boilerplate;
 using Bubbles.Components;
-using Bubbles.Components.AI;
 using Bubbles.Components.Combat;
 using Bubbles.Graphics.Colour;
 using Bubbles.Layers;
@@ -9,10 +9,6 @@ using Bubbles.Systems;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Nez;
-using Nez.AI.FSM;
-using Nez.AI.GOAP;
-using Nez.Sprites;
-using Nez.Textures;
 
 namespace Bubbles.Entities
 {
@@ -37,9 +33,7 @@ namespace Bubbles.Entities
             addComponent(new Heading());
             addComponent(new MovementInput());
             addComponent(new Motion {SpeedMultiplier = 0.5f});
-            addComponent(new InRange());
-            addComponent<EnemyAI>();
-//            addComponent(new TweenMotion(1.5f));
+            addComponent(new GOAPStateMachine(new EnemyAgent(this)));
 
             var collider = addComponent(new CircleCollider(8f));
             collider.setLocalOffset(new Vector2(0, 15f));
