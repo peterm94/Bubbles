@@ -25,7 +25,7 @@ namespace Bubbles.Util
 
         protected override void lateProcess(List<Entity> entities)
         {
-            Parallel.ForEach(entities, process);
+            Parallel.ForEach(entities, lateProcess);
         }
     }
 }
