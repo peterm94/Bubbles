@@ -61,6 +61,18 @@
 /processorParam:TextureFormat=Color
 /build:../../../Bubbles-Art/Player.png;Player.png
 
+#begin ../../../Bubbles-Art/StoneFloorTile.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../../../Bubbles-Art/StoneFloorTile.png;StoneFloorTile.png
+
 #begin ../../../Bubbles-Art/Sword.png
 /importer:TextureImporter
 /processor:TextureProcessor

@@ -68,6 +68,7 @@
     <Compile Include="Components\Visuals\HealthBar.cs" />
     <Compile Include="Components\Visuals\Sleep.cs" />
     <Compile Include="Entities\AnimatedEntity.cs" />
+    <Compile Include="Entities\Background.cs" />
     <Compile Include="Entities\HammerEntity.cs" />
     <Compile Include="Entities\CursorEntity.cs" />
     <Compile Include="Entities\EnemyEntity.cs" />

@@ -10,6 +10,7 @@ using Bubbles.Systems.Position;
 using Bubbles.Systems.Visuals;
 using Microsoft.Xna.Framework;
 using Nez;
+using Nez.Tweens;
 
 namespace Bubbles.Scenes
 {
@@ -22,6 +23,8 @@ namespace Bubbles.Scenes
             addRenderer(new ScreenSpaceRenderer(100, SCREEN_SPACE_RENDER_LAYER));
             addRenderer(new RenderLayerExcludeRenderer(0, SCREEN_SPACE_RENDER_LAYER));
 
+            addEntity(new Background()).setPosition(0, 0);
+            
             var cursor = addEntity(new CursorEntity());
 
             var player = new PlayerEntity();
@@ -33,7 +36,6 @@ namespace Bubbles.Scenes
             weapon.addComponent(new RotateTowards {Towards = cursor});
             weapon.addComponent(new PlayerControlled());
             addEntity(weapon);
-
 
             var sword1 = new SwordEntity("sword1");
             var enemy1 = addEntity(new EnemyEntity("dude1"));

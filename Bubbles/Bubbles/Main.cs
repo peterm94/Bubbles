@@ -1,3 +1,5 @@
+using System;
+using System.Drawing.Drawing2D;
 using System.Security.Principal;
 using Bubbles.Scenes;
 using Bubbles.Util;
@@ -10,12 +12,15 @@ namespace Bubbles
     {
         public Main() : base(1920, 1080)
         {
+//            Screen.synchronizeWithVerticalRetrace = false;
+//            TargetElapsedTime = TimeSpan.FromSeconds(1d / 144d);
+//            Screen.applyChanges();
         }
 
         protected override void Initialize()
-        {
+        {            
             base.Initialize();
-
+            
             // Game-wide defaults.
             Scene.setDefaultDesignResolution(512, 288, Scene.SceneResolutionPolicy.NoBorderPixelPerfect);
             IsMouseVisible = false;
