@@ -8,6 +8,9 @@ namespace Bubbles.AI.Boilerplate
     /// </summary>
     public abstract class EntityAction : Action
     {
+        // The Entity that the action is performing on.
+        public readonly Entity Entity;
+        
         // Target of the action (if there is one).
         public readonly Entity Target;
 
@@ -26,12 +29,16 @@ namespace Bubbles.AI.Boilerplate
         // At what range is the entity considered "in range" of the target?
         protected abstract int Range { get;  }
         
-        protected EntityAction(string name, Entity target = null, int cost = 1) : base(name, cost)
+        protected EntityAction(string name, Entity entity, Entity target = null, int cost = 1) : base(name, cost)
         {
+            Entity = entity;
             Target = target;
         }
         
         // Run the action.
-        public abstract bool Run(Entity entity);
+        public abstract bool Run();
+
+        // Any clean up required on the frame after the action is run.
+        public abstract void End();
     }
 }

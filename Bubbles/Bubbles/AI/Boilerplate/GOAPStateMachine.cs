@@ -10,6 +10,8 @@ namespace Bubbles.AI.Boilerplate
 {
     public class GOAPStateMachine : SimpleStateMachine<GOAPStateMachine.State>
     {
+        private EntityAction previousAction = null;
+        
         public enum State
         {
             Idle,
@@ -38,8 +40,6 @@ namespace Bubbles.AI.Boilerplate
         {
             return agent.actions.Pop() as EntityAction;
         }
-
-        #region states
 
         void Idle_Tick()
         {
@@ -83,7 +83,13 @@ namespace Bubbles.AI.Boilerplate
         }
 
         void Animate_Tick()
-        {
+        {                        
+            // Need to run cleanup for the previous frame.
+            if (currentState == previousState)
+            {
+                previousAction?.End();   
+            }
+            
             // Out of actions, we need a new plan!
             if (!agent.hasActionPlan())
             {
@@ -91,11 +97,11 @@ namespace Bubbles.AI.Boilerplate
                 return;
             }
 
-            // If the action is complete, go to the next one.
-            if (Peek().IsDone) Pop();
-            
             var action = Peek();
-
+            
+            // If the action is complete, go to the next one.
+            if (action.IsDone) Pop();
+            
             // If we are out of range, move before the action can be performed.
             if (action.RequiresInRange && !action.InRange(entity))
             {
@@ -104,7 +110,8 @@ namespace Bubbles.AI.Boilerplate
             }
 
             // We can finally run the action now :)
-            var success = action.Run(entity);
+            var success = action.Run();
+            previousAction = action;
             Pop();
             
             // Hardcore failure state that aborts the entire plan.
@@ -114,6 +121,9 @@ namespace Bubbles.AI.Boilerplate
             }
         }
 
-        #endregion
+        void Animate_Exit()
+        {
+            previousAction?.End();
+        }
     }
 }

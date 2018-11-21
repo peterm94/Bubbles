@@ -36,7 +36,7 @@ namespace Bubbles.Scenes
 
 
             var sword1 = new SwordEntity("sword1");
-            Entity enemy1 = addEntity(new EnemyEntity("dude1"));
+            var enemy1 = addEntity(new EnemyEntity("dude1"));
             enemy1.addComponent(new Equipped {Equip = sword1});
             sword1.setPosition(0, 16);
             sword1.setParent(enemy1);
@@ -45,7 +45,7 @@ namespace Bubbles.Scenes
             enemy1.setPosition(new Vector2(50, 50));
 
             var sword2 = new SwordEntity("sword2");
-            Entity enemy2 = addEntity(new EnemyEntity("dude2"));
+            var enemy2 = addEntity(new EnemyEntity("dude2"));
             enemy2.addComponent(new Equipped {Equip = sword2});
             enemy2.setPosition(new Vector2(300, 200));
             sword2.setPosition(0, 16);

@@ -12,7 +12,7 @@ namespace Bubbles.AI.Agents
         {
             // Not sure how dynamic targeting is going to work.
             var player = entity.scene.findEntity("Player");
-            var attack = new AttackAction(player);
+            var attack = new AttackAction(entity, player);
             attack.setPrecondition(TARGET_ALIVE, true);
             attack.setPostcondition(TARGET_ALIVE, false);
             _planner.addAction(attack);

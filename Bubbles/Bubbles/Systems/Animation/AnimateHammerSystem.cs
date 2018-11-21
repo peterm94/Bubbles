@@ -80,8 +80,6 @@ namespace Bubbles.Systems.Animation
             {
                 sprite.play(Animations.Idle);
             }
-            
-            input.Clear();
         }
     }
 }
