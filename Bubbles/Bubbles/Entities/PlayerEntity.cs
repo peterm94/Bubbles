@@ -20,6 +20,8 @@ namespace Bubbles.Entities
 
         public override void onAddedToScene()
         {
+            setTag(Tags.Player);
+
             Initialise("player", 32);
 
             AddAnimation(new Animation(SubTextures, AnimateMovementSystem.Animations.Walk, 6, true));
@@ -31,7 +33,7 @@ namespace Bubbles.Entities
             addComponent(new MovementInput());
             addComponent(new MeleeInput());
             addComponent(new Motion());
-            addComponent(new HealthBar(this));
+            addComponent(new HealthBar());
 
             transform.position = new Vector2(256, 144);
 
@@ -39,7 +41,6 @@ namespace Bubbles.Entities
             collider.setLocalOffset(new Vector2(0, 15f));
             Flags.setFlagExclusive(ref collider.physicsLayer, PhysicsLayers.PLAYER);
             Flags.setFlagExclusive(ref collider.collidesWithLayers, PhysicsLayers.NONE);
-            
         }
     }
 }

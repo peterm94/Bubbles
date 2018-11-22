@@ -24,7 +24,7 @@ namespace Bubbles.Scenes
             addRenderer(new RenderLayerExcludeRenderer(0, SCREEN_SPACE_RENDER_LAYER));
 
             addEntity(new Background()).setPosition(0, 0);
-            
+
             var cursor = addEntity(new CursorEntity());
 
             var player = new PlayerEntity();
@@ -55,6 +55,8 @@ namespace Bubbles.Scenes
             sword2.addComponent(new RotateTowards {Towards = player});
             addEntity(sword2);
 
+            addEntity(new EnemySpawnController("SpawnController"));
+
             camera.addComponent(new GoodFollowCam(player, cursor));
 
             addEntityProcessor(new MovementInputSystem());
@@ -72,6 +74,7 @@ namespace Bubbles.Scenes
             addEntityProcessor(new BringOutYourDead());
             addEntityProcessor(new DestroyEntitySystem());
             addEntityProcessor(new FlashWhiteSystem(this));
+            addEntityProcessor(new EnemySpawnSystem(this));
 
 //            addRenderer(new BlackOutlineRenderer(1000, camera));
         }

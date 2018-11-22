@@ -60,7 +60,7 @@
     <Compile Include="Components\MovementInput.cs" />
     <Compile Include="Components\Motion.cs" />
     <Compile Include="Components\SpriteCollider.cs" />
-    <Compile Include="Components\Tags.cs" />
+    <Compile Include="Components\Components.cs" />
     <Compile Include="Components\TransformLock.cs" />
     <Compile Include="Components\TweenMotion.cs" />
     <Compile Include="Components\Unused\EnemyDamager.cs" />
@@ -69,11 +69,13 @@
     <Compile Include="Components\Visuals\Sleep.cs" />
     <Compile Include="Entities\AnimatedEntity.cs" />
     <Compile Include="Entities\Background.cs" />
+    <Compile Include="Entities\EnemySpawnController.cs" />
     <Compile Include="Entities\HammerEntity.cs" />
     <Compile Include="Entities\CursorEntity.cs" />
     <Compile Include="Entities\EnemyEntity.cs" />
     <Compile Include="Entities\PlayerEntity.cs" />
     <Compile Include="Entities\SwordEntity.cs" />
+    <Compile Include="Entities\Tags.cs" />
     <Compile Include="Entities\Unused\MotionInfo.cs" />
     <Compile Include="Graphics\Colour\Palette.cs" />
     <Compile Include="Graphics\Renderers\BlackOutlineRenderer.cs" />
@@ -91,6 +93,7 @@
     <Compile Include="Systems\Combat\DestroyEntitySystem.cs" />
     <Compile Include="Systems\Controls\MeleeInputSystem.cs" />
     <Compile Include="Systems\Controls\MovementInputSystem.cs" />
+    <Compile Include="Systems\EnemySpawnSystem.cs" />
     <Compile Include="Systems\PhysicsSystem.cs" />
     <Compile Include="Systems\MovementSystem.cs" />
     <Compile Include="Systems\Position\TrackMouseSystem.cs" />

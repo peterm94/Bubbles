@@ -12,18 +12,16 @@ namespace Bubbles.Components.Visuals
         private readonly Vector2 _targetOffset = new Vector2(-1 * (BarWidth / 2), 25);
         
         public override RectangleF bounds { get; } = RectangleF.maxRect;
-        private readonly Entity _target;
         
-        public HealthBar(Entity target)
+        public HealthBar()
         {
-            _target = target;
         }
         
         public override void render(Nez.Graphics graphics, Nez.Camera camera)
         {
             // TODO figure out the height of the target dynamically.
-            var barPos = _target.position + _targetOffset;
-            var health = _target.getComponent<Health>();
+            var barPos = entity.position + _targetOffset;
+            var health = entity.getComponent<Health>();
             if (health != null)
             {
                 var healthWidth = (float)health.Hp / health.MaxHp * BarWidth;

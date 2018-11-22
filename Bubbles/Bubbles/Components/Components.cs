@@ -1,9 +1,4 @@
-using System;
-using System.Net;
-using System.Threading;
-using Microsoft.Xna.Framework.Graphics;
 using Nez;
-using Nez.Sprites;
 
 namespace Bubbles.Components
 {
@@ -40,7 +35,7 @@ namespace Bubbles.Components
     public class WontDestroy : Component
     {
     }
-    
+
     public class FlashWhite : Component
     {
     }
