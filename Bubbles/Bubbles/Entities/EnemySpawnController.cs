@@ -1,6 +1,7 @@
 using System.Linq;
 using Bubbles.Components;
 using Bubbles.Components.Combat;
+using Bubbles.Layers;
 using Microsoft.Xna.Framework;
 using Nez;
 
@@ -54,13 +55,17 @@ namespace Bubbles.Entities
 
         public void Spawn()
         {
+            var player = entity.scene.findEntitiesWithTag(Tags.Player).First();
+
+            if (player == null) return;
+
             // TODO pass this in or something, pick from a list?
             var sword = new SwordEntity("sword1");
             var enemy = entity.scene.addEntity(new EnemyEntity());
             enemy.addComponent(new Equipped {Equip = sword});
             sword.setPosition(0, 16);
             sword.setParent(enemy);
-            sword.addComponent(new RotateTowards {Towards = entity.scene.findEntitiesWithTag(Tags.Player).First()});
+            sword.addComponent(new RotateTowards {Towards = player});
             entity.scene.addEntity(sword);
             enemy.setPosition(_position);
         }
